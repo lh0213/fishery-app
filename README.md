@@ -1,4 +1,4 @@
-#Fishery App
+# Fishery App
 
 Fishery App for NUS LSM4255 (Methods in Mathematical Biology)
 
