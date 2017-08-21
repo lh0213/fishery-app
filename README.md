@@ -1,4 +1,11 @@
-# oTree
+#Fishery App
+
+Fishery App for NUS LSM4255 (Methods in Mathematical Biology)
+
+Setup oTree (see below)
+
+
+## oTree
 
 oTree is a framework based on Python and Django that lets you build:
 
