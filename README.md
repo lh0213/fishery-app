@@ -6,6 +6,7 @@ Fishery App for NUS LSM4255 (Methods in Mathematical Biology)
 ## Set up oTree
 
 https://otree.readthedocs.io/en/latest/install.html
+
 oTree is a framework based on Python and Django that lets you build:
 
 - Multiplayer strategy games, like the prisoner's dilemma, public goods game, and auctions
