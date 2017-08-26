@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+
+    <p>Here is the number of fish you caught:</p>
+
+    <p>
+        {{ player.fish_caught }}
+    </p>
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

@@ -7,9 +7,9 @@ class Introduction(Page):
         return self.round_number == 1
 
 
-class Guess(Page):
+class Catch(Page):
     form_model = models.Player
-    form_fields = ['guess']
+    form_fields = ['fish_caught']
 
 
 class ResultsWaitPage(WaitPage):
@@ -18,13 +18,10 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-    def vars_for_template(self):
-        sorted_guesses = sorted(p.guess for p in self.group.get_players())
-
-        return {'sorted_guesses': sorted_guesses}
+    pass
 
 
 page_sequence = [Introduction,
-                 Guess,
+                 Catch,
                  ResultsWaitPage,
                  Results]

@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Year 2038
+{% endblock %}
+
+{% block content %}
+
+    {% formfield player.fish_caught with label="Enter number of fish you want to catch: " %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}
