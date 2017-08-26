@@ -1,11 +1,4 @@
-# Fishery App
-
-Fishery App for NUS LSM4255 (Methods in Mathematical Biology)
-
-Setup oTree (see below)
-
-
-## oTree
+# oTree
 
 oTree is a framework based on Python and Django that lets you build:
 
@@ -184,9 +177,9 @@ See docs on [bots](http://otree.readthedocs.io/en/latest/bots.html).
 
 ## Features 
 
-- Extensive admin interface for launching games & surveys, managing participants, monitoring data, etc.
-- Flexible API, e.g. for [group re-matching](http://otree.readthedocs.io/en/latest/groups.html#group-matching)
-- Publish your games to [Amazon Mechanical Turk](http://otree.readthedocs.io/en/latest/mturk.html)
+- Easy-to-use admin interface for launching games & surveys, managing participants, monitoring data, etc.
+- Simple yet extensive API
+- Publish your games to Amazon Mechanical Turk
 
 
 ## Contact & support
