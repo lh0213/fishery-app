@@ -99,3 +99,6 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# oTree database
+db.sqlite3
