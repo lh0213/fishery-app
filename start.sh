@@ -1,0 +1,2 @@
+otree resetdb
+otree runserver
