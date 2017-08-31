@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Thank you
+{% endblock %}
+
+{% block content %}
+
+    <div class="panel panel-default" style="margin-bottom:10px">
+        <div class="panel-body">
+            <p><strong>Result:</strong></p>
+            <p>Your caught {{ participant.payoff }} in total.</p>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block form %}
+
+{% endblock %}

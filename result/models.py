@@ -6,13 +6,12 @@ import random
 
 
 doc = """
-This application provides a webpage instructing participants how to get paid.
-Examples are given for the lab and Amazon Mechanical Turk (AMT).
+This application shows a webpage to report on the outcome of the game.
 """
 
 
 class Constants(BaseConstants):
-    name_in_url = 'payment_info'
+    name_in_url = 'result'
     players_per_group = None
     num_rounds = 1
 
@@ -24,5 +23,3 @@ class Group(BaseGroup):
 
 class Player(BasePlayer):
     pass
-
-

@@ -58,8 +58,8 @@ AWS_SECRET_ACCESS_KEY = environ.get('AWS_SECRET_ACCESS_KEY')
 
 
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
-REAL_WORLD_CURRENCY_CODE = 'USD'
 USE_POINTS = True
+POINTS_CUSTOM_NAME = 'fish'
 
 
 
@@ -133,8 +133,8 @@ SESSION_CONFIGS = [
      {
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
-        #'num_demo_participants': 1,
-        'app_sequence': ['fishery'],
+        'num_demo_participants': 1,
+        'app_sequence': ['fishery', 'result'],
         # Default values for parameters, from the demo ppt
         'intrinsic_growth_rate': 0.65,
         'strength_of_density_regulation': 0.002,

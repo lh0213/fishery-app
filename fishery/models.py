@@ -12,7 +12,7 @@ Fishery app, etc.
 class Constants(BaseConstants):
     name_in_url = 'fishery'
     players_per_group = None
-    num_rounds = 9
+    num_rounds = 3
 
     # Views
     instructions_template = 'fishery/Instructions.html'
@@ -25,15 +25,13 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     def set_payoffs(self):
         for p in self.get_players():
-            p.payoff = p.num_fish_caught
-
+            p.payoff = p.num_fish_caught_this_year
 
 class Player(BasePlayer):
     username = models.CharField()
-    num_fish_caught = models.PositiveIntegerField()
+    num_fish_caught_this_year = models.PositiveIntegerField()
 
     # Not sure whether we really need these fields
     #student_id = models.CharField()
-    #num_fish_caught_this_year;
 
     #Public void catchFish(int numOfFishCaughtThisYear);
