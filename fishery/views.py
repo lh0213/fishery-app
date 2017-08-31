@@ -10,6 +10,10 @@ class Introduction(Page):
 class Catch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
+    def vars_for_template(self):
+        return {
+            'year_number': self.round_number,
+        }
 
 
 class ResultsWaitPage(WaitPage):
