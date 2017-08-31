@@ -19,8 +19,9 @@ http://otree.readthedocs.org
 
 ### Starting the server
 
+#### Linux
 After installing Python & oTree, clone this repo and run:
 
 ```
-otree runserver
+./start.sh
 ```
