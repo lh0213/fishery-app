@@ -8,6 +8,7 @@
 {% block content %}
 
     {% formfield player.num_fish_caught_this_year with label="Enter number of fish you want to catch: " %}
+    <p>There are now {{ num_fish_left_in_fishery }} fish left in fishery.</p>
 
     {% next_button %}
 

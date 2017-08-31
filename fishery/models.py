@@ -19,13 +19,26 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    num_fish_at_start = models.PositiveIntegerField
+    # Record it here since we will need the value for each single year
+    num_fish_at_start = models.PositiveIntegerField()
+
+    def creating_session(self):
+        self.num_fish_at_start = self.session.config['starting_fish_count']
 
 
 class Group(BaseGroup):
     def set_payoffs(self):
+        # Need to decide whether to end game here if there are no more fish
+        # Returns boolean: whether to continue the game
         for p in self.get_players():
-            p.payoff = p.num_fish_caught_this_year
+            self.subsession.num_fish_at_start -= p.num_fish_caught_this_year
+        if self.subsession.num_fish_at_start > 0:
+            # Only give payoff if there are positive number of fish left
+            for p in self.get_players():
+                p.payoff = p.num_fish_caught_this_year
+            return True
+        else:
+            return False
 
 class Player(BasePlayer):
     username = models.CharField()
