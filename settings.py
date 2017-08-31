@@ -133,8 +133,15 @@ SESSION_CONFIGS = [
      {
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
-        'num_demo_participants': 1,
+        #'num_demo_participants': 1,
         'app_sequence': ['fishery'],
+        # Default values for parameters, from the demo ppt
+        'intrinsic_growth_rate': 0.65,
+        'strength_of_density_regulation': 0.002,
+        'sustainable_yield': 40.5,
+        # Round to a nicer number because why not
+        'starting_fish_count': 150,
+
     },
 ]
 
