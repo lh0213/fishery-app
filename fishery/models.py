@@ -12,10 +12,10 @@ Fishery app, etc.
 class Constants(BaseConstants):
     name_in_url = 'fishery'
     players_per_group = None
-    num_rounds = 1
+    num_rounds = 9
 
-
-    #instructions_template = 'fishery/Instructions.html'
+    # Views
+    instructions_template = 'fishery/Instructions.html'
 
 
 class Subsession(BaseSubsession):
@@ -23,9 +23,9 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
-
     def set_payoffs(self):
-        pass
+        for p in self.get_players():
+            p.payoff = p.num_fish_caught
 
 
 class Player(BasePlayer):

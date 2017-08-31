@@ -9,7 +9,7 @@ class Introduction(Page):
 
 class Catch(Page):
     form_model = models.Player
-    form_fields = ['fish_caught']
+    form_fields = ['num_fish_caught']
 
 
 class ResultsWaitPage(WaitPage):
@@ -18,7 +18,7 @@ class ResultsWaitPage(WaitPage):
 
 
 class Results(Page):
-    pass
+    total_num_of_fish = 3030
 
 
 page_sequence = [Introduction,
