@@ -38,7 +38,7 @@ class ResultsWaitPage(WaitPage):
 class Results(Page):
     def vars_for_template(self):
         return {
-            'num_total_fish_caught': self.participant.payoff,
+            'num_total_fish_caught': self.player.total_fish_caught,
             'num_fish_left_in_fishery': self.subsession.num_fish_left_this_year,
         }
 

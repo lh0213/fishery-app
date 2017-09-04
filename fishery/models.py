@@ -4,6 +4,7 @@ from otree.api import (
 )
 import datetime
 
+author = 'Fan Yuting & Liu Hang'
 doc = """
 Fishery app, etc.
 """
@@ -53,7 +54,14 @@ class Player(BasePlayer):
 
     total_fish_caught = 0
     num_fish_caught_this_year = models.PositiveIntegerField(
-        choices=range(0, 2, 1)
+        choices=[0, 1, 2],
+        widget=widgets.RadioSelect()
     )
+
+    #def role(self):
+    #    if self.user_name == 'teacher' and self.student_id == '00000000':
+    #        return 'Teacher'
+    #    else:
+    #        return 'Student'
 
     #Public void catchFish(int numOfFishCaughtThisYear);
