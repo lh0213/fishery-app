@@ -13,7 +13,7 @@ Fishery app, etc.
 class Constants(BaseConstants):
     name_in_url = 'fishery'
     players_per_group = 3
-    num_rounds = 3
+    num_rounds = 9999
 
     # Views
     instructions_template = 'fishery/Instructions.html'
@@ -27,6 +27,7 @@ class Subsession(BaseSubsession):
 
     def creating_session(self):
         self.num_fish_at_start = self.session.config['starting_fish_count']
+        self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
 
     num_fish_left_this_year = num_fish_at_start
 
