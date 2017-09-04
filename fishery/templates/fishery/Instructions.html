@@ -1,5 +1,7 @@
+{% extends "global/Page.html" %}
 {% load otree_tags staticfiles %}
 
+{% block content %}
 <div class="instructions well well-lg">
     <h3 class="panel-sub-heading">
         Fishery App Instructions
@@ -19,3 +21,5 @@
     of fish you want to catch.
 </p>
 </div>
+    {% next_button %}
+    {% endblock %}
