@@ -140,8 +140,7 @@ SESSION_CONFIGS = [
         'strength_of_density_regulation': 0.002,
         'sustainable_yield': 40.5,
         # Round to a nicer number because why not
-        'starting_fish_count': 150,
-
+        'starting_fish_count': 10,
     },
 ]
 

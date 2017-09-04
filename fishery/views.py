@@ -12,6 +12,9 @@ class Catch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
 
+    def is_displayed(self):
+        return self.session.vars['continue_game']
+
     def vars_for_template(self):
         current_year = self.round_number
         display_year = current_year - 1 + datetime.date.today().year
@@ -34,11 +37,17 @@ class Catch(Page):
 
 
 class ResultsWaitPage(WaitPage):
+    def is_displayed(self):
+        return self.session.vars['continue_game']
+
     def after_all_players_arrive(self):
-        continue_game = self.group.set_payoffs()
+        self.session.vars['continue_game'] = self.group.set_payoffs()
 
 
 class Results(Page):
+    def is_displayed(self):
+        return self.session.vars['continue_game']
+
     def vars_for_template(self):
         return {
             'num_total_fish_caught': self.participant.payoff,

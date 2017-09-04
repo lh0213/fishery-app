@@ -12,7 +12,7 @@ Fishery app, etc.
 class Constants(BaseConstants):
     name_in_url = 'fishery'
     players_per_group = 3
-    num_rounds = 9999
+    num_rounds = 10
 
     # Views
     instructions_template = 'fishery/Instructions.html'
@@ -24,14 +24,8 @@ class Subsession(BaseSubsession):
     num_fish_at_start_of_year = models.PositiveIntegerField()
 
     def creating_session(self):
-<<<<<<< HEAD
-        self.num_fish_at_start = self.session.config['starting_fish_count']
-        self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
-=======
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
->>>>>>> 80c82e70aefa916e78c7b55eae4459849de5f1e8
-
-
+        self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
 
 class Group(BaseGroup):
     def set_payoffs(self):
@@ -39,7 +33,7 @@ class Group(BaseGroup):
         # Returns boolean: whether to continue the game
         for p in self.get_players():
             self.subsession.num_fish_at_start_of_year -= p.num_fish_caught_this_year
-        if self.subsession.num_fish_at_start_of_year > 0:
+        if self.subsession.num_fish_at_start_of_year >= 0:
             # Only give payoff if there are positive number of fish left
             for p in self.get_players():
                 p.payoff = p.num_fish_caught_this_year
