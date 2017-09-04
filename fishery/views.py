@@ -2,7 +2,7 @@ from . import models
 from ._builtin import Page, WaitPage
 
 
-class Introduction(Page):
+class Instructions(Page):
     def is_displayed(self):
         return self.round_number == 1
 
@@ -25,7 +25,7 @@ class Catch(Page):
                     .num_fish_left_this_year
 
         return {
-            'year_number': self.round_number + self.Constants.this_year,
+            'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_left_this_year,
         }
 
@@ -34,15 +34,15 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         continue_game = self.group.set_payoffs()
 
+
 class Results(Page):
     def vars_for_template(self):
         return {
             'num_total_fish_caught': self.participant.payoff,
-            'num_fish_left_in_fishery': self.num_fish_left_this_year,
+            'num_fish_left_in_fishery': self.subsession.num_fish_left_this_year,
         }
-    pass
 
-page_sequence = [Introduction,
+page_sequence = [Instructions,
                  Catch,
                  ResultsWaitPage,
                  Results]
