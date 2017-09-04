@@ -38,7 +38,7 @@ class Group(BaseGroup):
             # Only give payoff if there are positive number of fish left
             for p in self.get_players():
                 p.payoff = p.num_fish_caught_this_year
-                p.total_fish_caught += p.num_fish_caught_this_year
+                #p.total_fish_caught += p.num_fish_caught_this_year
             return True
         else:
             return False
@@ -49,7 +49,7 @@ class Player(BasePlayer):
     user_name = models.CharField()
     student_id = models.CharField()
 
-    total_fish_caught = 0
+    #total_fish_caught = 0
     num_fish_caught_this_year = models.PositiveIntegerField(
         choices=[0, 1, 2],
         widget=widgets.RadioSelect()
