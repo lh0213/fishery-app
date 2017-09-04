@@ -11,6 +11,7 @@ Fishery app, etc.
 
 class Constants(BaseConstants):
     name_in_url = 'fishery'
+    this_year = 2017
     players_per_group = 3
     num_rounds = 3
 
