@@ -2,7 +2,7 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency
 )
-
+import datetime
 
 doc = """
 Fishery app, etc.
@@ -11,7 +11,6 @@ Fishery app, etc.
 
 class Constants(BaseConstants):
     name_in_url = 'fishery'
-    this_year = 2017
     players_per_group = 3
     num_rounds = 3
 
@@ -23,6 +22,7 @@ class Subsession(BaseSubsession):
     # Record it here since we will need the value for each single year
     #? why two assignments to num_fish_at_start
     num_fish_at_start = models.PositiveIntegerField()
+    this_year = datetime.datetime.year;
 
     def creating_session(self):
         self.num_fish_at_start = self.session.config['starting_fish_count']
@@ -52,6 +52,8 @@ class Player(BasePlayer):
     student_id = models.CharField()
 
     total_fish_caught = 0
-    num_fish_caught_this_year = models.PositiveIntegerField()
+    num_fish_caught_this_year = models.PositiveIntegerField(
+        choices=range(0, 2, 1)
+    )
 
     #Public void catchFish(int numOfFishCaughtThisYear);
