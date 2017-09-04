@@ -14,6 +14,7 @@ class Catch(Page):
 
     def vars_for_template(self):
         current_year = self.round_number
+        display_year = current_year - 1 + datetime.date.today().year
 
         # magic code!
         #if current_year > 1:
@@ -26,7 +27,7 @@ class Catch(Page):
                     .num_fish_at_start_of_year
 
         return {
-            'year_number': datetime.datetime.year,
+            'year_number': display_year,
             #'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
