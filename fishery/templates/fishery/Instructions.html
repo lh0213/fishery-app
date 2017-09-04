@@ -2,9 +2,20 @@
 
 <div class="instructions well well-lg">
     <h3 class="panel-sub-heading">
-        Instructions
+        Fishery App Instructions
     </h3>
-    <p>
-        You are a fisherman. Choose the number of fish you want to catch. 
-    </p>
+<p>
+    This is a fishery game with 3 players.
+</p>
+<p>
+    The default parameters are as follows:
+        intrinsic_growth_rate: {{ this.SESSION_CONFIGS.intrinsic_growth_rate }},
+        strength_of_density_regulation: {{ this.SESSION_CONFIGS.strength_of_density_regulation }},
+        sustainable_yield: {{ this.SESSION_CONFIGS.sustainable_yield }},
+        starting_fish_count: {{ this.SESSION_CONFIGS.starting_fish_count }},
+
+    You are a fisherman. In the beginning, there are 150 fish in the fishery.
+    Every year your friends and you can catch some fish by choosing the number
+    of fish you want to catch.
+</p>
 </div>
