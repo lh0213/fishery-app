@@ -10,14 +10,23 @@ class Introduction(Page):
 class Catch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
+
     def vars_for_template(self):
         current_year = self.round_number
-        if (current_year > 1):
-            self.subsession.num_fish_at_start = self.subsession.in_round(current_year - 1) \
-                    .num_fish_at_start
+
+        # magic code!
+        #if current_year > 1:
+        #    self.subsession.num_fish_at_start = self.subsession.in_round(current_year - 1) \
+        #            .num_fish_at_start
+
+        #Is it correct?
+        if current_year > 1:
+            self.subsession.num_fish_left_this_year = self.subsession.in_round(current_year - 1) \
+                    .num_fish_left_this_year
+
         return {
-            'year_number': self.round_number,
-            'num_fish_left_in_fishery': self.subsession.num_fish_at_start,
+            'year_number': self.round_number + self.Constants.this_year,
+            'num_fish_left_in_fishery': self.subsession.num_fish_left_this_year,
         }
 
 
@@ -29,7 +38,7 @@ class Results(Page):
     def vars_for_template(self):
         return {
             'num_total_fish_caught': self.participant.payoff,
-            'num_fish_left_in_fishery': self.subsession.num_fish_at_start,
+            'num_fish_left_in_fishery': self.num_fish_left_this_year,
         }
     pass
 
