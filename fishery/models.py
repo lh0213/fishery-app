@@ -11,7 +11,7 @@ Fishery app, etc.
 
 class Constants(BaseConstants):
     name_in_url = 'fishery'
-    players_per_group = None
+    players_per_group = 3
     num_rounds = 3
 
     # Views
@@ -20,6 +20,7 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     # Record it here since we will need the value for each single year
+    #? why two assignments to num_fish_at_start
     num_fish_at_start = models.PositiveIntegerField()
 
     def creating_session(self):
@@ -36,15 +37,18 @@ class Group(BaseGroup):
             # Only give payoff if there are positive number of fish left
             for p in self.get_players():
                 p.payoff = p.num_fish_caught_this_year
+                p.total_fish_caught += p.num_fish_caught_this_year
             return True
         else:
             return False
 
-class Player(BasePlayer):
-    username = models.CharField()
-    num_fish_caught_this_year = models.PositiveIntegerField()
 
-    # Not sure whether we really need these fields
-    #student_id = models.CharField()
+class Player(BasePlayer):
+    # Name may be duplicated, use student id as the key
+    user_name = models.CharField()
+    student_id = models.CharField()
+    
+    total_fish_caught = 0
+    num_fish_caught_this_year = models.PositiveIntegerField()
 
     #Public void catchFish(int numOfFishCaughtThisYear);
