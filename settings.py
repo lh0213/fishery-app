@@ -93,28 +93,13 @@ DEMO_PAGE_INTRO_TEXT = """
 
 ROOMS = [
     {
-        'name': 'econ101',
-        'display_name': 'Econ 101 class',
-        'participant_label_file': '_rooms/econ101.txt',
-    },
-    {
-        'name': 'live_demo',
-        'display_name': 'Room for live demo (no participant labels)',
-    },
+        'name': 'lsm4255',
+        'display_name': 'LSM4255',
+        # Uncomment if we are using student numbers to make sure each student only
+        # takes part once
+        'participant_label_file': '_rooms/students.txt',
+    }
 ]
-
-
-mturk_hit_settings = {
-    'keywords': ['bonus', 'study'],
-    'title': 'Title for your experiment',
-    'description': 'Description for your experiment',
-    'frame_height': 500,
-    'preview_template': 'global/MTurkPreview.html',
-    'minutes_allotted_per_assignment': 60,
-    'expiration_hours': 7*24, # 7 days
-    #'grant_qualification_id': 'YOUR_QUALIFICATION_ID_HERE',# to prevent retakes
-    'qualification_requirements': []
-}
 
 
 # if you set a property in SESSION_CONFIG_DEFAULTS, it will be inherited by all configs
@@ -126,18 +111,17 @@ SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.00,
     'participation_fee': 0.00,
     'doc': "",
-    'mturk_hit_settings': mturk_hit_settings,
 }
 
 SESSION_CONFIGS = [
      {
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
-        'num_demo_participants': 3,
+        'num_demo_participants': 0,
         'app_sequence': ['fishery', 'result'],
         # Default values for parameters, from the demo ppt
-        'intrinsic_growth_rate': 0.65,
-        'strength_of_density_regulation': 0.002,
+        'intrinsic_growth_rate': 0.4,
+        'strength_of_density_regulation': 0.001,
         'sustainable_yield': 40.5,
         # Round to a nicer number because why not
         'starting_fish_count': 10,
