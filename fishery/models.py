@@ -20,17 +20,11 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     # Record it here since we will need the value for each single year
-    #? why two assignments to num_fish_at_start
     num_fish_at_start_of_year = models.PositiveIntegerField()
 
     def creating_session(self):
-<<<<<<< HEAD
-        self.num_fish_at_start = self.session.config['starting_fish_count']
         self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
-=======
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
->>>>>>> 80c82e70aefa916e78c7b55eae4459849de5f1e8
-
 
 
 class Group(BaseGroup):
