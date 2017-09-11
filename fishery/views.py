@@ -24,13 +24,19 @@ class TeacherStartPage(Page):
 class TeacherEachYearResult(Page):
     # def is_displayed(self):
     # when to display?
-    pass
+    def vars_for_template(self):
+        return {
+            'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
+        }
 
 
 class TeacherFinalResult(Page):
     # def is_displayed(self):
     # when to display?
-    pass
+    def vars_for_template(self):
+        return {
+            'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
+        }
 
 
 class StudentCatch(Page):
@@ -80,8 +86,9 @@ class StudentFinalResult(Page):
 
 page_sequence = [Login,
                  Instructions,
+                 TeacherStartPage,
                  StudentCatch,
                  ResultsWaitPage,
-                 Results]
+                 TeacherEachYearResult,
                  OutOfFishResult,
                  StudentFinalResult]
