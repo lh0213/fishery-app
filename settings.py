@@ -95,8 +95,6 @@ ROOMS = [
     {
         'name': 'lsm4255',
         'display_name': 'LSM4255',
-        # Uncomment if we are using student numbers to make sure each student only
-        # takes part once
         'participant_label_file': '_rooms/students.txt',
     }
 ]
