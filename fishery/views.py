@@ -61,7 +61,7 @@ class ResultsWaitPage(WaitPage):
         continue_game = self.group.set_payoffs()
 
 
-class Results(Page):
+class StudentFinalResult(Page):
     def vars_for_template(self):
         return {
             'num_total_fish_caught': self.participant.payoff,
@@ -73,3 +73,4 @@ page_sequence = [Login,
                  StudentCatch,
                  ResultsWaitPage,
                  Results]
+                 StudentFinalResult]
