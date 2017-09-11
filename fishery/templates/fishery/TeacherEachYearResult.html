@@ -1,0 +1,33 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    TeacherEachYearResults
+{% endblock %}
+
+{% block content %}
+
+    <p>Current Graph:</p>
+
+    <p>
+        {# show graph here #}
+
+    </p>
+
+    <p>Last Year Results:</p>
+    <p>
+        {# show results here: #}
+
+    </p>
+
+    {# two buttons: next_year, stop & result  #}
+    <button type="button">
+        Next_year
+    </button>
+    
+    <button type="button">
+        Stop & Show Result
+    </button>
+
+
+{% endblock %}
