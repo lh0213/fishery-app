@@ -3,6 +3,10 @@ from ._builtin import Page, WaitPage
 import datetime
 
 
+class Login(Page):
+    pass
+
+
 class Instructions(Page):
     def is_displayed(self):
         return self.round_number == 1
@@ -16,19 +20,13 @@ class Catch(Page):
         current_year = self.round_number
         display_year = current_year - 1 + datetime.date.today().year
 
-        # magic code!
-        #if current_year > 1:
-        #    self.subsession.num_fish_at_start = self.subsession.in_round(current_year - 1) \
-        #            .num_fish_at_start
-
-        #Is it correct?
         if current_year > 1:
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(current_year - 1) \
                     .num_fish_at_start_of_year
 
         return {
             'year_number': display_year,
-            #'year_number': self.round_number + self.subsession.this_year,
+            # 'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
 
@@ -45,7 +43,8 @@ class Results(Page):
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
 
-page_sequence = [Instructions,
+page_sequence = [Login,
+                 Instructions,
                  Catch,
                  ResultsWaitPage,
                  Results]
