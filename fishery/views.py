@@ -56,6 +56,16 @@ class StudentCatch(Page):
         }
 
 
+class OutOfFishResult(Page):
+    def is_displayed(self):
+        return self.subsession.num_fish_at_start_of_year < 0
+
+    def vars_for_template(self):
+        return {
+            'num_total_fish_caught': self.participant.payoff,
+        }
+
+
 class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         continue_game = self.group.set_payoffs()
@@ -73,4 +83,5 @@ page_sequence = [Login,
                  StudentCatch,
                  ResultsWaitPage,
                  Results]
+                 OutOfFishResult,
                  StudentFinalResult]
