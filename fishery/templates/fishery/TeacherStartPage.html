@@ -1,0 +1,28 @@
+{% extends "global/Page.html" %}
+{% load otree_tags staticfiles %}
+
+{% block content %}
+    <div class="teacherStartPage">
+        <h3 class="panel-sub-heading">
+            Teacher's page
+        </h3>
+    <p>
+        Welcome Teacher:
+        Please set the parameters:
+    </p>
+    <p>
+        {# maybe some problems here #}
+
+        {% formfield Constants.para_intrinsic_growth_rate with label="Intrinsic growth rate(r):" %}
+        {% formfield Constants.para_strength_of_density_regulation with label="Strength of density regulation(a):" %}
+        {% formfield Constants.para_sustainable_yield with label="Sustainable yield(Hmax):" %}
+        {% formfield Constants.para_total_num_of_fish with label="Total number of fish:" %}
+
+    </p>
+
+    </div>
+
+    <button name="Start Fishing!" class="btn btn-primary btn-large">Start Fishing!</button>
+
+    {% include Constants.instructions_template %}
+{% endblock %}

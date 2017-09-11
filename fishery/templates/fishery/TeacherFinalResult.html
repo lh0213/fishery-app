@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    TeacherFinalResults
+{% endblock %}
+
+{% block content %}
+    <p>There are now {{ num_fish_left_in_fishery }} fish left in fishery.</p>
+    <p>Graph:</p>
+
+    <p>
+        {# show graph here #}
+
+    </p>
+
+    <p>Final Results:</p>
+    <p>
+        {# show results here: #}
+
+    </p>
+
+    {# two buttons: next_year, stop & result  #}
+    <button type="button">
+        Export Data
+    </button>
+
+
+{% endblock %}

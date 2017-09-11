@@ -14,13 +14,18 @@ class Constants(BaseConstants):
     players_per_group = None
     num_rounds = 100
 
+    # Teacher sets the parameters, need to be changed accordingly but not:
+    para_intrinsic_growth_rate = models.FloatField()
+    para_strength_of_density_regulation = models.FloatField()
+    para_sustainable_yield = models.FloatField()
+    para_total_num_of_fish = models.PositiveIntegerField()
+
     # Views
     instructions_template = 'fishery/Instructions.html'
 
 
 class Subsession(BaseSubsession):
     # Record it here since we will need the value for each single year
-    #? why two assignments to num_fish_at_start
     num_fish_at_start_of_year = models.PositiveIntegerField()
 
     def creating_session(self):
