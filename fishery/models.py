@@ -14,6 +14,12 @@ class Constants(BaseConstants):
     players_per_group = 3
     num_rounds = 9999
 
+    # Teacher sets the parameters, need to be changed accordingly but not:
+    para_intrinsic_growth_rate = models.FloatField()
+    para_strength_of_density_regulation = models.FloatField()
+    para_sustainable_yield = models.FloatField()
+    para_total_num_of_fish = models.PositiveIntegerField()
+
     # Views
     instructions_template = 'fishery/Instructions.html'
 

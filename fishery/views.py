@@ -13,6 +13,14 @@ class Instructions(Page):
         return self.round_number == 1
 
 
+class TeacherStartPage(Page):
+    # def is_displayed(self):
+    # display when player.role = "teacher"
+    form_model = models.Constants
+    form_fields = ['para_intrinsic_growth_rate','para_strength_of_density_regulation',
+                   'para_sustainable_yield','para_total_num_of_fish']
+
+
 class Catch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
