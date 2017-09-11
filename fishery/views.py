@@ -4,6 +4,8 @@ import datetime
 
 
 class Login(Page):
+    def is_displayed(self):
+        return self.round_number == 1
     form_model = models.Player
     form_fields = ['user_name', 'student_id']
 
@@ -58,10 +60,10 @@ class StudentCatch(Page):
             'year_number': display_year,
             # 'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-            'para_r': self.Constants.para_intrinsic_growth_rate,
-            'para_a': self.Constants.para_strength_of_density_regulation,
-            'para_hmax': self.Constants.para_sustainable_yield,
-            'total_fish_till_this_round': self.participant.payoff
+            #'para_r': self.Constants.para_intrinsic_growth_rate,
+            #'para_a': self.Constants.para_strength_of_density_regulation,
+            #'para_hmax': self.Constants.para_sustainable_yield,
+            #'total_fish_till_this_round': self.participant.payoff
         }
 
 
@@ -94,9 +96,9 @@ class StudentFinalResult(Page):
 
 page_sequence = [Login,
                  Instructions,
-                 TeacherStartPage,
+                 #TeacherStartPage,
                  StudentCatch,
                  ResultsWaitPage,
-                 TeacherEachYearResult,
+                 #TeacherEachYearResult,
                  OutOfFishResult,
                  StudentFinalResult]
