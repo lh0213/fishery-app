@@ -1,0 +1,21 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    LSM4225 GONE FISHING
+
+    LOGIN
+{% endblock %}
+
+{% block content %}
+    <p>
+    {% formfield player.user_name with label="Your name:" %}
+    </p>
+    <p>
+    {% formfield player.student_id with label="Please login with your student id:" %}
+    </p>
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

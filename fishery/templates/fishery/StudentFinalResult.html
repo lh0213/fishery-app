@@ -1,0 +1,29 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    StudentFinalResult
+{% endblock %}
+
+{% block content %}
+    <p>
+        {# graph for the result 1 #}
+    </p>
+    <p>
+        {# graph for the result 2 #}
+    </p>
+
+    <p>
+        Here is the number of fish you caught:
+    </p>
+    <p>
+        {{ player.num_fish_caught_this_year }}
+    </p>
+
+    <p>You now have {{ num_total_fish_caught }} in total.</p>
+    <p>There are now {{ num_fish_left_in_fishery }} fish left in fishery.</p>
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}
