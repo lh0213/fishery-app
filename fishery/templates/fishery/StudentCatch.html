@@ -1,0 +1,44 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    StudentCatch Page
+{% endblock %}
+
+{% block content %}
+    <p>
+        Welcome, student!
+    </p>
+    <p>
+        Year {{ year_number }}:
+    </p>
+
+    <p>
+        {# Part1: fishery status #}
+        {# fishery image #}
+    </p>
+
+    <p>
+        {# Part2: no of fish you caught #}
+        Total no. of fish you've caught : {{ total_fish_till_this_round }}
+        {# fish caught image #}
+    </p>
+
+    <p>
+        {# Part3: show parameters #}
+        Intrinsic growth rate(r) : {{ para_r }}
+        Strength of density regulation(a) : {{ para_a }}
+        Sustainable yield(H_max) : {{ para_hmax }}
+        Total number of fish left : {{ num_fish_left_in_fishery }}
+    </p>
+    <p>
+        {# Part4: graph #}
+    </p>
+
+    {% formfield player.num_fish_caught_this_year with label="Choose the number of fish you want to catch: " %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template %}
+
+{% endblock %}

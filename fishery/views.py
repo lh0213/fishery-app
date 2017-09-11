@@ -33,7 +33,7 @@ class TeacherFinalResult(Page):
     pass
 
 
-class Catch(Page):
+class StudentCatch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
 
@@ -49,6 +49,10 @@ class Catch(Page):
             'year_number': display_year,
             # 'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
+            'para_r': self.Constants.para_intrinsic_growth_rate,
+            'para_a': self.Constants.para_strength_of_density_regulation,
+            'para_hmax': self.Constants.para_sustainable_yield,
+            'total_fish_till_this_round': self.participant.payoff
         }
 
 
@@ -66,6 +70,6 @@ class Results(Page):
 
 page_sequence = [Login,
                  Instructions,
-                 Catch,
+                 StudentCatch,
                  ResultsWaitPage,
                  Results]
