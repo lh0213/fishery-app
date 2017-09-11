@@ -4,7 +4,8 @@ import datetime
 
 
 class Login(Page):
-    pass
+    form_model = models.Player
+    form_fields = ['user_name', 'student_id']
 
 
 class Instructions(Page):
