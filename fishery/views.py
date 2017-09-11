@@ -21,6 +21,18 @@ class TeacherStartPage(Page):
                    'para_sustainable_yield','para_total_num_of_fish']
 
 
+class TeacherEachYearResult(Page):
+    # def is_displayed(self):
+    # when to display?
+    pass
+
+
+class TeacherFinalResult(Page):
+    # def is_displayed(self):
+    # when to display?
+    pass
+
+
 class Catch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
