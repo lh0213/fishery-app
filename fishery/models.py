@@ -76,6 +76,10 @@ class Player(BasePlayer):
     user_name = models.CharField()
     student_id = models.CharField()
 
+    # It will be included in a “documentation” file
+    # that is available on the “Data Export” page.
+    contribution = models.IntegerField(doc="how much fish you have caught")
+
     #total_fish_caught = 0
     num_fish_caught_this_year = models.PositiveIntegerField(
         choices=[0, 1, 2],
