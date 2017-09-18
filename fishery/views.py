@@ -41,7 +41,8 @@ class StudentCatch(Page):
                     .num_fish_at_start_of_year
 
         return {
-            'year_number': utils.display_year(self),
+            "year_number": utils.display_year(self),
+            "catch_history": utils.catch_history(self.subsession),
             # 'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
             # Constants

@@ -1,6 +1,53 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
-
+{% block scripts %}
+    <script src="{% static "highcharts/highcharts.js" %}"></script>
+    <script src="{% static "highcharts/modules/exporting.js" %}"></script>
+    <script>
+    var data = {{ catch_history|json }}
+    if (data.length > 1) {
+        Highcharts.chart('graph', {
+            title: {
+                text: 'Fishery History'
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of Ffish'
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                // Remember to change hard-coded value!!!!!
+                pointStart: 2017,
+                }
+            },
+            series: [{
+                name: 'Fish count',
+                data: {{ catch_history|json }}
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
+    }
+    </script>
+{% endblock %}
 {% block title %}
     Catch
 {% endblock %}
@@ -25,8 +72,16 @@
         {# fish caught image #}
     </p>
 
+    {% formfield player.num_fish_caught_this_year with label="Choose the number of fish you want to catch: " %}
+    {% next_button %}
+
+    <p>
+        {# Part3: graph #}
+        <div id="graph"></div>
+    </p>
+
     <table class="table">
-        {# Part3: show parameters #}
+        {# Part4: show parameters #}
         <tr>
             <td>Intrinsic growth rate(r)</td><td>{{ intrinsic_growth_rate }}</td>
         </tr>
@@ -40,12 +95,4 @@
             <td>Total number of fish left</td><td>{{ num_fish_left_in_fishery }}</td>
         </tr>
     </table>
-    <p>
-        {# Part4: graph #}
-    </p>
-
-    {% formfield player.num_fish_caught_this_year with label="Choose the number of fish you want to catch: " %}
-
-    {% next_button %}
-
 {% endblock %}
