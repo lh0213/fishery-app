@@ -25,9 +25,11 @@ class TeacherFinalResult(Page):
 
     # displays the same chart in the admin report and participant pages
     def vars_for_template(self):
-        return {
+        vars_dict = {
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-        }, self.subsession.vars_for_admin_report()
+        }
+        vars_dict.update(self.subsession.vars_for_admin_report())
+        return vars_dict
 
 
 class StudentCatch(Page):
@@ -88,4 +90,5 @@ page_sequence = [StudentCatch,
                  ResultsWaitPage,
                  #TeacherEachYearResult,
                  OutOfFishResult,
-                 StudentFinalResult]
+                 StudentFinalResult,
+                 #TeacherFinalResult]
