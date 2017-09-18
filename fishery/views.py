@@ -72,6 +72,7 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.session.vars['continue_game'] = self.group.set_payoffs()
 
+
 class StudentFinalResult(Page):
     def is_displayed(self):
         return self.session.vars['continue_game']
