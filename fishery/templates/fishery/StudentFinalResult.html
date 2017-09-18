@@ -12,16 +12,12 @@
     <p>
         {# graph for the result 2 #}
     </p>
-
     <p>
-        Here is the number of fish you caught:
+        You now have {{ num_total_fish_caught }} in total.
     </p>
     <p>
-        {{ player.num_fish_caught_this_year }}
+        There are now {{ num_fish_left_in_fishery }} fish left in fishery.
     </p>
-
-    <p>You now have {{ num_total_fish_caught }} in total.</p>
-    <p>There are now {{ num_fish_left_in_fishery }} fish left in fishery.</p>
     {% next_button %}
 
 {% endblock %}

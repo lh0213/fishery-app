@@ -17,15 +17,19 @@ class TeacherEachYearResult(Page):
         return {
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
-
+# displaying the same chart in the admin report and participant pages
 
 class TeacherFinalResult(Page):
     # def is_displayed(self):
     # when to display?
+
+    # displays the same chart in the admin report and participant pages
     def vars_for_template(self):
-        return {
+        vars_dict = {
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
+        vars_dict.update(self.subsession.vars_for_admin_report())
+        return vars_dict
 
 
 class StudentCatch(Page):
@@ -70,6 +74,7 @@ class ResultsWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.session.vars['continue_game'] = self.group.set_payoffs()
 
+
 class StudentFinalResult(Page):
     def is_displayed(self):
         return self.session.vars['continue_game']
@@ -85,4 +90,5 @@ page_sequence = [StudentCatch,
                  ResultsWaitPage,
                  #TeacherEachYearResult,
                  OutOfFishResult,
-                 StudentFinalResult]
+                 StudentFinalResult,
+                 #TeacherFinalResult]
