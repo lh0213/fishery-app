@@ -95,6 +95,7 @@ ROOMS = [
     {
         'name': 'lsm4255',
         'display_name': 'LSM4255',
+        'use_secure_urls': True
         #'participant_label_file': '_rooms/students.txt',
     }
 ]
@@ -107,7 +108,9 @@ ROOMS = [
 
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.00,
+    'real_world_currency_code': 'fish',
     'participation_fee': 0.00,
+    'real_world_currency_decimal_places': 0,
     'doc': "",
 }
 

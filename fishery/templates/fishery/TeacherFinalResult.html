@@ -11,6 +11,13 @@
 
     <p>
         {# show graph here #}
+        <p>Here is the sorted list of fish which the players caught in round {{ subsession.round_number }}</p>
+
+            <ul>
+                {% for payoff in payoffs %}
+                    <li>{{ payoff }}</li>
+                {% endfor %}
+            </ul>
 
     </p>
 
