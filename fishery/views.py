@@ -2,19 +2,6 @@ from . import models
 from ._builtin import Page, WaitPage
 import datetime
 
-
-class Login(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-    form_model = models.Player
-    form_fields = ['user_name', 'student_id']
-
-
-class Instructions(Page):
-    def is_displayed(self):
-        return self.round_number == 1
-
-
 class TeacherStartPage(Page):
     # def is_displayed(self):
     # display when player.role = "teacher"
@@ -94,10 +81,7 @@ class StudentFinalResult(Page):
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
 
-page_sequence = [Login,
-                 Instructions,
-                 #TeacherStartPage,
-                 StudentCatch,
+page_sequence = [StudentCatch,
                  ResultsWaitPage,
                  #TeacherEachYearResult,
                  OutOfFishResult,
