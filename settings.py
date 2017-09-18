@@ -95,6 +95,7 @@ ROOMS = [
     {
         'name': 'lsm4255',
         'display_name': 'LSM4255',
+        'use_secure_urls': True
         #'participant_label_file': '_rooms/students.txt',
     }
 ]
