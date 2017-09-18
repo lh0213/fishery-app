@@ -20,18 +20,26 @@
 
     <p>
         {# Part2: no of fish you caught #}
-        No. of fish you've caught last year : {{ player.num_fish_caught_this_year }}
-        Total no. of fish you've caught : {{ total_fish_till_this_round }}
+        <p>No. of fish you've caught last year : {{ player.num_fish_caught_this_year }}</p>
+        <p>Total no. of fish you've caught : {{ player.participant.payoff }}</p>
         {# fish caught image #}
     </p>
 
-    <p>
+    <table class="table">
         {# Part3: show parameters #}
-        Intrinsic growth rate(r) : {{ para_r }}
-        Strength of density regulation(a) : {{ para_a }}
-        Sustainable yield(H_max) : {{ para_hmax }}
-        Total number of fish left : {{ num_fish_left_in_fishery }}
-    </p>
+        <tr>
+            <td>Intrinsic growth rate(r)</td><td>{{ intrinsic_growth_rate }}</td>
+        </tr>
+        <tr>
+            <td>Strength of density regulation(a)</td><td>{{ strength_of_density_regulation }}</td>
+        </tr>
+        <tr>
+            <td>Sustainable yield(H_max)</td><td>{{ sustainable_yield }}</td>
+        </tr>
+        <tr>
+            <td>Total number of fish left</td><td>{{ num_fish_left_in_fishery }}</td>
+        </tr>
+    </table>
     <p>
         {# Part4: graph #}
     </p>
@@ -39,7 +47,5 @@
     {% formfield player.num_fish_caught_this_year with label="Choose the number of fish you want to catch: " %}
 
     {% next_button %}
-
-    {% include Constants.instructions_template %}
 
 {% endblock %}
