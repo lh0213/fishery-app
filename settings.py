@@ -95,7 +95,7 @@ ROOMS = [
     {
         'name': 'lsm4255',
         'display_name': 'LSM4255',
-        'participant_label_file': '_rooms/students.txt',
+        #'participant_label_file': '_rooms/students.txt',
     }
 ]
 
@@ -116,7 +116,7 @@ SESSION_CONFIGS = [
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
         'num_demo_participants': 0,
-        'app_sequence': ['fishery', 'result'],
+        'app_sequence': ['login', 'fishery', 'result'],
         # Default values for parameters, from the demo ppt
         'intrinsic_growth_rate': 0.4,
         'strength_of_density_regulation': 0.001,
