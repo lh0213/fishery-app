@@ -32,6 +32,12 @@ class Subsession(BaseSubsession):
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
         self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
 
+    # add this method to automatically generate the graph result of the game
+    def vars_for_admin_report(self):
+        payoffs = sorted([p.payoff for p in self.get_players()])
+        return {'payoffs': payoffs}
+
+
 class Group(BaseGroup):
     def set_payoffs(self):
         # Need to decide whether to end game here if there are no more fish
