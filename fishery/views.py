@@ -1,6 +1,6 @@
 from . import models
+from . import utils
 from ._builtin import Page, WaitPage
-import datetime
 
 class TeacherStartPage(Page):
     # def is_displayed(self):
@@ -36,15 +36,12 @@ class StudentCatch(Page):
         return self.session.vars['continue_game']
 
     def vars_for_template(self):
-        current_year = self.round_number
-        display_year = current_year - 1 + datetime.date.today().year
-
-        if current_year > 1:
-            self.subsession.num_fish_at_start_of_year = self.subsession.in_round(current_year - 1) \
+        if self.round_number > 1:
+            self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
                     .num_fish_at_start_of_year
 
         return {
-            'year_number': display_year,
+            'year_number': utils.display_year(self),
             # 'year_number': self.round_number + self.subsession.this_year,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
             # Constants
@@ -80,6 +77,7 @@ class StudentFinalResult(Page):
         return {
             'num_total_fish_caught': self.participant.payoff,
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
+            'year_number': utils.display_year(self),
         }
 
 page_sequence = [StudentCatch,
