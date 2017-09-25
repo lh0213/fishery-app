@@ -33,6 +33,8 @@ class TeacherFinalResult(Page):
 
 
 class StudentCatch(Page):
+    timeout_seconds = 180
+
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
 
@@ -58,6 +60,8 @@ class StudentCatch(Page):
 
 
 class OutOfFishResult(Page):
+    timeout_seconds = 2000
+
     def is_displayed(self):
         return self.subsession.num_fish_at_start_of_year < 0
 
@@ -76,6 +80,8 @@ class ResultsWaitPage(WaitPage):
 
 
 class StudentFinalResult(Page):
+    timeout_seconds = 2000
+    
     def is_displayed(self):
         return self.session.vars['continue_game']
 
