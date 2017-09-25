@@ -1,11 +1,8 @@
 from otree.api import Currency as c, currency_range, SubmissionMustFail
-from otree.constants_internal import timeout_happened
-
 from . import views
 from ._builtin import Bot
-from .models import Constants
 from random import randint
-
+from .models import Constants
 
 
 class PlayerBot(Bot):

@@ -3,8 +3,8 @@ from . import views
 from ._builtin import Bot
 from .models import Constants
 
+
 class PlayerBot(Bot):
-
+    @property
     def play_round(self):
-        yield(views.Result)
-
+        yield (views.Result)
