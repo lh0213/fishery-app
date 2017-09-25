@@ -126,6 +126,7 @@ SESSION_CONFIGS = [
         'sustainable_yield': 40.5,
         # Round to a nicer number because why not
         'starting_fish_count': 10,
+        'use_browser_bots': True
     },
 ]
 
