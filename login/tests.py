@@ -8,7 +8,7 @@ class PlayerBot(Bot):
 
     @staticmethod
     def play_round(self):
-        yield (views.Introduction)
+        yield (views.Instructions)
 
         yield SubmissionMustFail(views.Login, {'user_name': '', 'student_id': 'A0162533Q'})
         yield SubmissionMustFail(views.Login, {'user_name': 'Liu Hang', 'student_id': ''})
