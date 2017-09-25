@@ -14,9 +14,7 @@ class PlayerBot(Bot):
         yield SubmissionMustFail(views.Login, {'user_name': 'Liu Hang', 'student_id': ''})
         yield SubmissionMustFail(views.Login, {'user_name': '', 'student_id': ''})
 
-        for i in range(1, 60):
-            username = 'Fan' * i
-            student_id = 31415926 + i
-
-            yield (views.Login, {'user_name': username, 'student_id': student_id})
+        username = 'Fan' * self.player.id_in_group
+        student_id = 31415926 + self.player.id_in_group
+        yield (views.Login, {'user_name': username, 'student_id': student_id})
 
