@@ -2,17 +2,19 @@ from otree.api import Currency as c, currency_range, SubmissionMustFail
 from . import views
 from ._builtin import Bot
 from .models import Constants
+from random import randint
+
 
 
 class PlayerBot(Bot):
-    cases = ['successful', 'out_of_fish']
 
+    @property
     def play_round(self):
-        yield (views.Introduction)
 
-        if self.case == 'successful':
+        # do not submit anything, send error
+        yield SubmissionMustFail(views.StudentCatch)
 
-        else:
+        yield (views.StudentCatch, {'num_fish_caught_this_year': randint(0, 2)})
+        yield (views.OutOfFishResult)
+        yield (views.StudentFinalResult)
 
-
-        yield (views.Results)
