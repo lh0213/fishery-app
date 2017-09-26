@@ -6,7 +6,6 @@ from .models import Constants
 
 class PlayerBot(Bot):
 
-    @staticmethod
     def play_round(self):
         yield (views.Instructions)
 
@@ -17,4 +16,3 @@ class PlayerBot(Bot):
         username = 'Fan' * self.player.id_in_group
         student_id = 31415926 + self.player.id_in_group
         yield (views.Login, {'user_name': username, 'student_id': student_id})
-
