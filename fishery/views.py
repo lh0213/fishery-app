@@ -90,5 +90,5 @@ page_sequence = [StudentCatch,
                  ResultsWaitPage,
                  #TeacherEachYearResult,
                  OutOfFishResult,
-                 StudentFinalResult]
+                 StudentFinalResult,]
                  #TeacherFinalResult]

@@ -1,4 +1,4 @@
-otree-core>=1.3.9
+git+git://github.com/liuhang0213/otree-fishery.git#egg=otree-core
 
 # Heroku requires Django to be explicitly in requirements file
 # in order to run collectstatic
