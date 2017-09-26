@@ -118,7 +118,7 @@ SESSION_CONFIGS = [
      {
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
-        'num_demo_participants': 0,
+        'num_demo_participants': 3,
         'app_sequence': ['login', 'fishery', 'result'],
         # Default values for parameters, from the demo ppt
         'intrinsic_growth_rate': 0.4,
