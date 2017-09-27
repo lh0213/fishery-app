@@ -1,4 +1,4 @@
 # Heroku requires Django to be explicitly in requirements file
 # in order to run collectstatic
 Django==1.8.8
-git+git://github.com/liuhang0213/otree-fishery.git#egg=otree-core
+git+git://github.com/liuhang0213/otree-fishery.git

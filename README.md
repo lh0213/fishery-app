@@ -6,3 +6,4 @@ Heroku demo: https://fishery-app.herokuapp.com
 ### oTree Docs
 
 http://otree.readthedocs.org
+
