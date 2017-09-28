@@ -72,7 +72,7 @@ class ResultsWaitPage(WaitPage):
         return self.session.vars['continue_game']
 
     def after_all_players_arrive(self):
-        self.session.vars['continue_game'] = self.group.set_payoffs()
+        self.session.vars['continue_game']= self.group.set_payoffs()
 
 
 class StudentFinalResult(Page):
@@ -89,6 +89,6 @@ class StudentFinalResult(Page):
 page_sequence = [StudentCatch,
                  ResultsWaitPage,
                  #TeacherEachYearResult,
-                 OutOfFishResult,
-                 StudentFinalResult,]
+                 # OutOfFishResult,
+                 StudentFinalResult]
                  #TeacherFinalResult]
