@@ -2,24 +2,44 @@
 {% load otree_tags staticfiles %}
 
 {% block content %}
-<div class="instructions well well-lg">
-    <h3 class="panel-sub-heading">
-        Fishery App Instructions
-    </h3>
-<p>
-    This is a fishery game with 3 players.
-</p>
-<p>
-    The default parameters are as follows:
-        intrinsic_growth_rate: {{ this.SESSION_CONFIGS.intrinsic_growth_rate }},
-        strength_of_density_regulation: {{ this.SESSION_CONFIGS.strength_of_density_regulation }},
-        sustainable_yield: {{ this.SESSION_CONFIGS.sustainable_yield }},
-        starting_fish_count: {{ this.SESSION_CONFIGS.starting_fish_count }},
 
-    You are a fisherman. In the beginning, there are 150 fish in the fishery.
-    Every year your friends and you can catch some fish by choosing the number
-    of fish you want to catch.
-</p>
-</div>
+<div>
+<p class="top">LSM4225 GONE FISHING</p>
+    <div class="back container-fluid" style="width: 50vw">
+    <p class="bgsize">
+        Fishery App Instructions
+    </p>
+    <div class="smsize">
+        <p>
+            You are a fisherman. In the beginning, there are {{ total_fish }}
+            fish in the fishery.
+            Every year your friends and you can catch some fish by choosing the number
+            of fish you want to catch.
+        </p>
+        <p>
+            The default parameters are as follows:
+                <table class="table">
+                    {# Part4: show parameters #}
+                    <tr>
+                        <td>Intrinsic growth rate(r)</td><td>{{ intrinsic_growth_rate }}</td>
+                    </tr>
+                    <tr>
+                        <td>Strength of density regulation(a)</td><td>{{ strength_of_density_regulation }}</td>
+                    </tr>
+                    <tr>
+                        <td>Sustainable yield(H_max)</td><td>{{ sustainable_yield }}</td>
+                    </tr>
+                    <tr>
+                        <td>Total number of fish left</td><td>{{ total_fish }}</td>
+                    </tr>
+                </table>
+
+        </p>
+
     {% next_button %}
-    {% endblock %}
+    </div>
+    </div>
+<p class="bottom">@National University of Singapore - Biology</p>
+</div>
+
+{% endblock %}
