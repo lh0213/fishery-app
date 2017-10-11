@@ -48,14 +48,20 @@ class StudentCatch(Page):
 
         return {
             "year_number": utils.display_year(self),
-            "catch_history": utils.catch_history(self.subsession),
-            # 'year_number': self.round_number + self.subsession.this_year,
+            "player_name": self.participant.vars['name'],
+
+            # Graph Variables
+            "each_year_fish_history": utils.catch_fish_history(self.subsession),
+            "each_year_yield_history": utils.catch_yield_history(self.subsession),
+            "each_year_sustainable_yield_history": utils.catch_sustainable_yield_history(self.subsession),
+
+            # Table Variables
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-            # Constants
+            "sustainable_yield": self.subsession.year_sustainable_yield,
+
+            # Table Constants
             "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],
             "strength_of_density_regulation": self.session.config['strength_of_density_regulation'],
-            "sustainable_yield": self.session.config['sustainable_yield'],
-            "player_name": self.participant.vars['name'],
         }
 
 
