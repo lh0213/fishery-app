@@ -1,21 +1,21 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-{% block title %}
-    LSM4225 GONE FISHING
-
-    LOGIN
-{% endblock %}
-
 {% block content %}
-    <p>
-    {% formfield player.user_name with label="Your name:" %}
-    </p>
-    <p>
-    {% formfield player.student_id with label="Please login with your student id:" %}
-    </p>
-    {% next_button %}
 
-    {% include Constants.instructions_template %}
+<div>
+<p class="top">LSM4225 GONE FISHING</p>
+    <div class="back container-fluid">
+    <p class="bgsize">Log In</p>
+    <div class="smsize">
+    {% formfield player.user_name with label="Your name:" %}
+    {% formfield player.student_id with label="Enter Your Student ID:" %}
+    {% next_button %}
+    </div>
+    </div>
+<p class="bottom">@National University of Singapore - Biology</p>
+</div>
+
+</body>
 
 {% endblock %}

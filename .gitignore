@@ -102,3 +102,5 @@ ENV/
 
 # oTree database
 db.sqlite3
+_static_root/
+
