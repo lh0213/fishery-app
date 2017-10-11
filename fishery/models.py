@@ -1,3 +1,4 @@
+import math
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency
@@ -27,6 +28,8 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     # Record it here since we will need the value for each single year
     num_fish_at_start_of_year = models.PositiveIntegerField()
+    year_yield = 0
+    year_sustainable_yield = 0
 
     def creating_session(self):
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
@@ -51,16 +54,20 @@ class Group(BaseGroup):
         n_t = self.subsession.num_fish_at_start_of_year
         rate = self.session.config['intrinsic_growth_rate']
         a = self.session.config['strength_of_density_regulation']
-        num_fish_for_next_year = 0
 
         for p in self.get_players():
             harvest += p.num_fish_caught_this_year
 
         # Applying the formula here
         num_fish_for_next_year = ((1 + rate) * n_t) / (1 + a * n_t) - harvest
+        this_year_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
+        this_year_sustainable_yield = math.pow(-1 + math.sqrt(1 + rate), 2) / a
+
         if num_fish_for_next_year > 0:
             # Store the result and pass to the next round later
             self.subsession.num_fish_at_start_of_year = num_fish_for_next_year
+            self.subsession.year_yield = this_year_yield
+            self.subsession.year_sustainable_yield = this_year_sustainable_yield
 
             # Only give payoff if there are positive number of fish left
             for p in self.get_players():
