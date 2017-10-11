@@ -75,6 +75,7 @@
 }
 
 p.top{
+
     width: 100%;
     text-align: center;
     font-weight: bold;
@@ -84,7 +85,7 @@ p.top{
     background: lightblue;
 }
 
-p.bottom{
+.bottom{
     position: absolute;
     right: 0;
     bottom: 0;
@@ -168,56 +169,51 @@ th, td {
     </script>
 {% endblock %}
 {% block content %}
-
-    <p class="top">LSM4225 GONE FISHING</p>
+<div>
+    <p class="top" style="z-index: 1">LSM4225 GONE FISHING</p>
     <p class="bgsize title">Welcome, {{ player_name }}!</p>
-    <div class="container-fluid row">
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div class="choiceback col-sm-5 col-md-5 col-lg-4">
-            {% formfield player.num_fish_caught_this_year with label="How many fish do you want to catch?" %}
-            {% next_button %}
-        </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div class="infoback col-sm-5 col-md-5 col-lg-6">
-            <p class="info">
-                <table>
-                    <tr>
-                        <th>Intrinsic growth rate(r)
-                        </th>
-                        <th>Strength of density regulation(a)
-                        </th>
-                        <th>Sustainable yield(Hmax)
-                        </th>
-                        <th>Total number of fish
-                        </th>
-                    </tr>
-                    <tr>
-                        <td>{{ intrinsic_growth_rate }}</td>
-                        <td>{{ strength_of_density_regulation }}</td>
-                        <td>{{ sustainable_yield }}</td>
-                        <td>{{ num_fish_left_in_fishery }}</td>
-                    </tr>
-                </table>
-                <br/>
-                <p class="info">
-                    Total number of fishes you have caught:
-                    {{ player.participant.payoff }}
-                </p>
-                </p>
 
-        </div>
-        <div class="col-sm-2 col-md-2 col-lg-3"> </div>
+    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+
+    <div class="container-fluid row choiceback col-sm-5 col-md-5 col-lg-4">
+        {% formfield player.num_fish_caught_this_year with label="How many fish do you want to catch?" %}
+        {% next_button %}
     </div>
 
-<div class="row">
     <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div align="center" class="fishback col-sm-3 col-md-3 col-lg-3">
-            <p class="info">
-                FISHERY
-            </p>
-        </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
 
+    <div class="container-fluid row infoback col-sm-5 col-md-5 col-lg-6">
+         <table class="info">
+               <tr>
+                   <th>Intrinsic growth rate(r)
+                   </th>
+                   <th>Strength of density regulation(a)
+                   </th>
+                   <th>Sustainable yield(Hmax)
+                   </th>
+                   <th>Total number of fish
+                   </th>
+               </tr>
+               <tr>
+                   <td>{{ intrinsic_growth_rate }}</td>
+                   <td>{{ strength_of_density_regulation }}</td>
+                   <td>{{ sustainable_yield }}</td>
+                   <td>{{ num_fish_left_in_fishery }}</td>
+               </tr>
+           </table>
+           <br/>
+         <p class="info">
+             Total number of fishes you have caught:
+             {{ player.participant.payoff }}
+         </p>
+
+    </div>
+
+    <div class="col-sm-2 col-md-2 col-lg-3"> </div>
+
+    <div class="row">
+        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
         <div align="center" class="fishback col-sm-3 col-md-5 col-lg-3">
             <p class="info">
                 GRAPH
@@ -225,8 +221,9 @@ th, td {
             </p>
         </div>
         <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+    </div>
 
+    <div class="bottom">@National University of Singapore - Biology</div>
 </div>
 
-<div class="bottom">@National University of Singapore - Biology</p>
-{% endblock %}
+    {% endblock %}-w---------___
