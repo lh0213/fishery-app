@@ -2,12 +2,13 @@ from . import models
 from . import utils
 from ._builtin import Page, WaitPage
 
+
 class TeacherStartPage(Page):
     # def is_displayed(self):
     # display when player.role = "teacher"
     form_model = models.Constants
     form_fields = ['para_intrinsic_growth_rate','para_strength_of_density_regulation',
-                   'para_sustainable_yield','para_total_num_of_fish']
+                   'para_total_num_of_fish']
 
 
 class TeacherEachYearResult(Page):
@@ -18,6 +19,7 @@ class TeacherEachYearResult(Page):
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
         }
 # displaying the same chart in the admin report and participant pages
+
 
 class TeacherFinalResult(Page):
     # def is_displayed(self):
