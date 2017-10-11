@@ -57,7 +57,7 @@ class StudentCatch(Page):
 
             # Table Variables
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-            "sustainable_yield": self.subsession.year_sustainable_yield,
+            "sustainable_yield": self.subsession.this_year_sustainable_yield,
 
             # Table Constants
             "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],

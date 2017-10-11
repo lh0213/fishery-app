@@ -123,7 +123,7 @@ th, td {
     <script src="{% static "highcharts/highcharts.js" %}"></script>
     <script src="{% static "highcharts/modules/exporting.js" %}"></script>
     <script>
-    var data = {{ catch_history|json }}
+    var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
         Highcharts.chart('graph', {
             title: {
@@ -146,8 +146,12 @@ th, td {
                 }
             },
             series: [{
-                name: 'Fish count',
-                data: {{ catch_history|json }}
+                //name: 'Fish count',
+                //data: {{ each_year_fish_history|json }},
+                //name: 'Yield',
+                //data: {{ each_year_yield_history|json }},
+                name: 'Sustainable Yield',
+                data: {{ each_year_sustainable_yield_history|json }}
             }],
             responsive: {
                 rules: [{
@@ -228,5 +232,5 @@ th, td {
 
 </div>
 
-<div class="bottom">@National University of Singapore - Biology</p>
+<div class="bottom"><p>@National University of Singapore - Biology</p></div>
 {% endblock %}
