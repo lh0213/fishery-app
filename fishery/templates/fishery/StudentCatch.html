@@ -5,9 +5,9 @@
 
 .choiceback{
     position: absolute;
-    left: 15%;
+    left: 12%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 30%;
+    width: 28%;
     height: 230px;
     margin-top: 20px;
     border-style:solid;
@@ -29,9 +29,9 @@
 
 .infoback{
     position: relative;
-    left: 40%;
+    left: 30%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 70%;
+    width: 80%;
     height: 230px;
     margin-top: 20px;
     border-style:solid;
@@ -42,9 +42,9 @@
 }
 
 .fishback{
-    left: 20%;
+    left: 15%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 70%;
+    width: 80%;
     /*height: 300px;*/
     margin-top: 40px;
     border-style:solid;
@@ -230,24 +230,27 @@ th, td {
     <p class="bgsize title">Welcome, {{ player_name }}!</p>
 
     <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-    <div class="container-fluid row choiceback col-sm-2 col-md-3 col-lg-3">
+    <div class="container-fluid row choiceback col-sm-2 col-md-2 col-lg-2">
         <!-- Page padding-->
         <div class="col-xs-0 col-md-1"> </div>
         <div class="hide">
             {% formfield player.num_fish_caught_this_year%}
             {% next_button %}
         </div>
+        </br>
+        </br>
              <p class="info">How many fish do you want to catch?</p>
-            <div class="choice-buttons">
-                <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
-                <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
-                <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
-            </div>
+        </br>
+        <div class="choice-buttons">
+            <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
+            <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
+            <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
         </div>
-    
+    </div>
+
     <div class="col-sm-1 col-md-1 col-lg-1"> </div>
 
-    <div class="container-fluid row back infoback col-xs-12 col-sm-5 col-md-5 col-lg-6">
+    <div class="container-fluid row infoback col-xs-6 col-sm-6 col-md-6 col-lg-6">
          <table class="info">
                <tr>
                    <th>Intrinsic growth rate(r)
@@ -279,7 +282,7 @@ th, td {
     <div class="row">
         <div class="col-sm-1 col-md-1 col-lg-1"> </div>
         <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div align="center" class="back fishback col-sm-3 col-md-5 col-lg-3">
+        <div align="center" class="fishback col-sm-3 col-md-5 col-lg-3">
             <p class="info">
                 GRAPH
                 <div id="graph"></div>
