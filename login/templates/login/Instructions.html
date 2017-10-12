@@ -3,13 +3,33 @@
 
 {% block content %}
 
+<style>
+.bottom{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    color: white;
+    text-align: center;
+    background: lightblue;
+}
+</style>
+
 <div>
 <p class="top">LSM4225 GONE FISHING</p>
+</div>
+
     <div class="back container-fluid" style="width: 50vw">
-    <p class="bgsize">
-        Fishery App Instructions
-    </p>
-    <div class="smsize">
+
+        <p class="bgsize">
+            Fishery App Instructions
+        </p>
+
+        <div class="smsize">
         <p>
             You are a fisherman. In the beginning, there are {{ total_fish }}
             fish in the fishery.
@@ -37,9 +57,9 @@
         </p>
 
     {% next_button %}
+        </div>
     </div>
-    </div>
-<p class="bottom">@National University of Singapore - Biology</p>
-</div>
+    <div class="bottom">@National University of Singapore - Biology</div>
+
 
 {% endblock %}
