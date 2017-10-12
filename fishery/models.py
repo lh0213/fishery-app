@@ -59,8 +59,10 @@ class Group(BaseGroup):
 
         # Applying the formula here
         num_fish_for_next_year = ((1 + rate) * n_t) / (1 + a * n_t) - harvest
-        year_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
-        year_sustainable_yield = math.pow(-1 + math.sqrt(1 + rate), 2) / a
+        year_yield = harvest
+        year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
+
+        # wrong: year_sustainable_yield = math.pow(-1 + math.sqrt(1 + rate), 2) / a
 
         if num_fish_for_next_year > 0:
             # Store the result and pass to the next round later

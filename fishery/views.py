@@ -42,9 +42,16 @@ class StudentCatch(Page):
         return self.session.vars['continue_game']
 
     def vars_for_template(self):
+
         if self.round_number > 1:
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
-                    .num_fish_at_start_of_year
+                .num_fish_at_start_of_year
+
+            self.subsession.this_year_sustainable_yield = self.subsession.in_round(self.round_number - 1) \
+                .this_year_sustainable_yield
+
+            self.subsession.this_year_yield = self.subsession.in_round(self.round_number - 1) \
+                .this_year_yield
 
         return {
             "year_number": utils.display_year(self),
