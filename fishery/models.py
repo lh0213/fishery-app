@@ -26,7 +26,7 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     # Record it here since we will need the value for each single year
-    num_fish_at_start_of_year = models.PositiveIntegerField()
+    num_fish_at_start_of_year = models.IntegerField()
     this_year_yield = models.FloatField()
     this_year_sustainable_yield = models.FloatField()
 
