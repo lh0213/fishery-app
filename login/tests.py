@@ -7,7 +7,6 @@ from .models import Constants
 class PlayerBot(Bot):
 
     def play_round(self):
-        yield (views.Instructions)
 
         # yield SubmissionMustFail(views.Login, {'user_name': '', 'student_id': 'A0162533Q'})
         # yield SubmissionMustFail(views.Login, {'user_name': 'Liu Hang', 'student_id': ''})
@@ -17,3 +16,4 @@ class PlayerBot(Bot):
         username = 'Fan' * self.player.id_in_group
         student_id = 31415926 + self.player.id_in_group
         yield (views.Login, {'user_name': username, 'student_id': student_id})
+        yield (views.Instructions)
