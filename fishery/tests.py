@@ -30,5 +30,3 @@ class PlayerBot(Bot):
             yield (views.StudentFinalResult)
         else:
             yield Submission(result.views.Result, {}, check_html=False)
-
-

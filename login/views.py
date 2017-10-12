@@ -18,7 +18,6 @@ class Instructions(Page):
                 # Constants
                 "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],
                 "strength_of_density_regulation": self.session.config['strength_of_density_regulation'],
-                "sustainable_yield": self.session.config['sustainable_yield'],
                 "total_fish": self.session.config['starting_fish_count']
         }
 
