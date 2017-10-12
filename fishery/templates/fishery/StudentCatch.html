@@ -2,10 +2,15 @@
 {% load staticfiles otree_tags %}
 {% block styles %}
 <style>
+
+.back {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding: 5px;
+}
+
 .choiceback{
-
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 30%;
+    /*width: 30%;*/
     height: 200px;
     margin-top: 20px;
     border:2px outset lightblue;
@@ -13,10 +18,17 @@
     background-color: lightblue;
     vertical-align: middle;
 }
+
+.choiceback button {
+    width: 32%;
+}
+
+.choicebuttons {
+    margin-top: 20px;
+}
+
 .infoback{
-
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 50%;
+    /*width: 50%;*/
     height: 200px;
     margin-top: 20px;
     border:2px outset lightblue;
@@ -24,10 +36,10 @@
     background-color: lightblue;
     vertical-align: middle;
 }
-.fishback{
 
+.fishback{
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 40%;
+    /*width: 40%;*/
     /*height: 300px;*/
     margin-top: 40px;
     border:2px outset lightblue;
@@ -48,6 +60,7 @@
     margin: 2px 2px;
     cursor: pointer;
 }
+
 .start{
     font-size: 15px;
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -70,7 +83,6 @@
 }
 
 .instruction{
-
     font-size: 15px;
 }
 
@@ -101,8 +113,8 @@ p.bottom{
 .info{
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 20px;
-
 }
+
 table, td, th {
     border: 2px solid white;
 }
@@ -116,6 +128,7 @@ th, td {
     height: 50px;
     text-align: center;
 }
+
 </style>
 {% endblock %}
 {% block scripts %}
@@ -168,6 +181,12 @@ th, td {
         }
     });
     }
+
+    // Catch buttons
+    $(".choice-button").click(function(){
+        $($(this).data("target")).trigger('click');
+        $(".next-button").trigger('click');
+    });
     </script>
 {% endblock %}
 {% block content %}
@@ -175,13 +194,22 @@ th, td {
     <p class="top">LSM4225 GONE FISHING</p>
     <p class="bgsize title">Welcome, {{ player_name }}!</p>
     <div class="container-fluid row">
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div class="choiceback col-sm-5 col-md-5 col-lg-4">
-            {% formfield player.num_fish_caught_this_year with label="How many fish do you want to catch?" %}
+        <!-- Page padding-->
+        <div class="col-xs-0 col-md-1"> </div>
+        <div class="hide">
+            {% formfield player.num_fish_caught_this_year%}
             {% next_button %}
         </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div class="infoback col-sm-5 col-md-5 col-lg-6">
+        <div class="back choiceback col-xs-12 col-md-4">
+            <p class="info">How many fish do you want to catch?</p>
+            <div class="choice-buttons">
+                <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
+                <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
+                <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
+            </div>
+        </div>
+        <div class="col-xs-0 col-md-1"> </div>
+        <div class="back infoback col-xs-12 col-md-5">
             <p class="info">
                 <table>
                     <tr>
@@ -209,19 +237,18 @@ th, td {
                 </p>
 
         </div>
-        <div class="col-sm-2 col-md-2 col-lg-3"> </div>
     </div>
 
 <div class="row">
     <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div align="center" class="fishback col-sm-3 col-md-3 col-lg-3">
+        <div align="center" class="back fishback col-sm-3 col-md-3 col-lg-3">
             <p class="info">
                 FISHERY
             </p>
         </div>
         <div class="col-sm-1 col-md-1 col-lg-1"> </div>
 
-        <div align="center" class="fishback col-sm-3 col-md-5 col-lg-3">
+        <div align="center" class="back fishback col-sm-3 col-md-5 col-lg-3">
             <p class="info">
                 GRAPH
                 <div id="graph"></div>
