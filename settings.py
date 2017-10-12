@@ -116,7 +116,7 @@ SESSION_CONFIGS = [
      {
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
-        'num_demo_participants': 3,
+        'num_demo_participants': 30,
         'app_sequence': ['login', 'fishery', 'result'],
         # Default values for parameters, from the demo ppt
         'starting_fish_count': 10,
