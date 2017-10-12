@@ -3,6 +3,10 @@
 
 {% block global_styles  %}
 <style>
+* {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 body, html {
     margin: 0;
     background-image: url("{% static "global/background.jpeg" %}");
@@ -60,6 +64,10 @@ input[type=submit] {
     font-size: 15px;
 }
 
+h1 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 p.top {
     position: fixed;
     top: 0;
@@ -92,6 +100,17 @@ div.bottom{
 button {
     margin: 0 auto;
 }
+
+.centre {
+    margin: 0 auto;
+    /*display: inline-block;*/
+    text-align: center;
+}
+
+.info{
+    font-size: 19px;
+}
+
 </style>
 {% endblock %}
 

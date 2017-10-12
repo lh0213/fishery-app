@@ -6,19 +6,13 @@
 {% endblock %}
 
 {% block content %}
-<div class="infoback col-sm-5 col-md-5 col-lg-6">
-    <p>
-        {# graph for the result 1 #}
-    </p>
-    <p>
-        {# graph for the result 2 #}
-    </p>
-    <p>
-        You now have {{ num_total_fish_caught }} in total.
-    </p>
-    <p>
+<div class="col-xs-1 col-md-3"></div>
+<div class="back infoback col-xs-10 col-md-6 col-lg-6">
+    <h1>Year {{ year_number }} Result</h1>
+    <p class="info">
+        You now have {{ num_total_fish_caught }} in total. <br/>
         There are now {{ num_fish_left_in_fishery }} fish left in fishery.
     </p>
-    {% next_button %}
+    <div class="centre">{% next_button %}</div>
 </div>
 {% endblock %}
