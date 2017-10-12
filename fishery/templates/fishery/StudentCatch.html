@@ -135,7 +135,7 @@ th, td {
                 }
             },
             legend: {
-                y: -40 // make room for subtitle
+                y: -40, // make room for subtitle
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle'
@@ -166,8 +166,8 @@ th, td {
                     name: 'Sustainable Yield',
                     data: {{ each_year_sustainable_yield_history|json }},
                     marker: {
-                        symbol: 'cross',
-                        fillColor:'#F5B041',
+                        //symbol: 'cross',
+                        fillColor: '#F5B041',
                         lineColor: '#F5B041',
                         lineWidth: 2
                     }
