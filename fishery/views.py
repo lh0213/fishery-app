@@ -52,7 +52,7 @@ class StudentCatch(Page):
             # Constants
             "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],
             "strength_of_density_regulation": self.session.config['strength_of_density_regulation'],
-            "sustainable_yield": self.session.config['sustainable_yield'],
+            "sustainable_yield": 0,
             "player_name": self.participant.vars['name'],
         }
 

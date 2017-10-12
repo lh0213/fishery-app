@@ -3,36 +3,43 @@
 {% block styles %}
 <style>
 .choiceback{
-
+    position: absolute;
+    left: 15%;
     font-family: "Comic Sans MS", cursive, sans-serif;
     width: 30%;
-    height: 200px;
+    height: 230px;
     margin-top: 20px;
-    border:2px outset lightblue;
-    border-radius: 8px;
-    background-color: lightblue;
+    border-style:solid;
+    border-width: 5px;
+    border-color:lightskyblue;
+    background-color: floralwhite;
     vertical-align: middle;
+    font-size: 20px;
 }
 .infoback{
+    position: relative;
+    left: 40%;
 
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 50%;
-    height: 200px;
+    width: 70%;
+    height: 230px;
     margin-top: 20px;
-    border:2px outset lightblue;
-    border-radius: 8px;
-    background-color: lightblue;
+    border-style:solid;
+    border-width: 5px;
+    border-color:lightskyblue;
+    background-color: floralwhite;
     vertical-align: middle;
 }
 .fishback{
-
+    left: 20%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 40%;
+    width: 70%;
     /*height: 300px;*/
     margin-top: 40px;
-    border:2px outset lightblue;
-    border-radius: 8px;
-    background-color: lightblue;
+    border-style:solid;
+    border-width: 5px;
+    border-color:lightskyblue;
+    background-color: floralwhite;
 }
 
 
@@ -74,15 +81,19 @@
     font-size: 15px;
 }
 
-p.top{
-
-    width: 100%;
+p.top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    padding-top: 20px;
+    padding-bottom: 3px;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
     font-family: "Comic Sans MS", cursive, sans-serif;
     color: white;
-    background: lightblue;
+    background: black;
 }
 
 .bottom{
@@ -170,12 +181,12 @@ th, td {
 {% endblock %}
 {% block content %}
 <div>
-    <p class="top" style="z-index: 1">LSM4225 GONE FISHING</p>
+    <p class="top" style="z-index: 1" >LSM4225 GONE FISHING</p>
     <p class="bgsize title">Welcome, {{ player_name }}!</p>
 
     <div class="col-sm-1 col-md-1 col-lg-1"> </div>
 
-    <div class="container-fluid row choiceback col-sm-5 col-md-5 col-lg-4">
+    <div class="container-fluid row choiceback col-sm-2 col-md-3 col-lg-3">
         {% formfield player.num_fish_caught_this_year with label="How many fish do you want to catch?" %}
         {% next_button %}
     </div>
@@ -226,4 +237,4 @@ th, td {
     <div class="bottom">@National University of Singapore - Biology</div>
 </div>
 
-    {% endblock %}-w---------___
+    {% endblock %}
