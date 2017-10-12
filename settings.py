@@ -108,9 +108,7 @@ ROOMS = [
 
 SESSION_CONFIG_DEFAULTS = {
     'real_world_currency_per_point': 0.00,
-    'real_world_currency_code': 'fish',
     'participation_fee': 0.00,
-    'real_world_currency_decimal_places': 0,
     'doc': "",
 }
 
@@ -118,16 +116,20 @@ SESSION_CONFIGS = [
      {
         'name': 'fishery',
         'display_name': 'Fishery Simulator',
-        'num_demo_participants': 0,
+        'num_demo_participants': 30,
         'app_sequence': ['login', 'fishery', 'result'],
         # Default values for parameters, from the demo ppt
+        'starting_fish_count': 10,
         'intrinsic_growth_rate': 0.4,
         'strength_of_density_regulation': 0.001,
-        'sustainable_yield': 40.5,
         # Round to a nicer number because why not
         'starting_fish_count': 10,
+        'use_browser_bots': False 
     },
 ]
+
+# Testing
+BROWSER_COMMAND="midori"
 
 # anything you put after the below line will override
 # oTree's default settings. Use with caution.
