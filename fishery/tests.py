@@ -9,10 +9,4 @@ class PlayerBot(Bot):
 
     def play_round(self):
         yield (views.Introduction)
-
-        if self.case == 'successful':
-
-        else:
-
-
         yield (views.Results)

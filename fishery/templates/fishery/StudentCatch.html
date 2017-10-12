@@ -2,10 +2,15 @@
 {% load staticfiles otree_tags %}
 {% block styles %}
 <style>
+
+.back {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    padding: 5px;
+}
+
 .choiceback{
-
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 30%;
+    /*width: 30%;*/
     height: 200px;
     margin-top: 20px;
     border:2px outset lightblue;
@@ -13,10 +18,17 @@
     background-color: lightblue;
     vertical-align: middle;
 }
+
+.choiceback button {
+    width: 32%;
+}
+
+.choicebuttons {
+    margin-top: 20px;
+}
+
 .infoback{
-
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 50%;
+    /*width: 50%;*/
     height: 200px;
     margin-top: 20px;
     border:2px outset lightblue;
@@ -24,10 +36,10 @@
     background-color: lightblue;
     vertical-align: middle;
 }
-.fishback{
 
+.fishback{
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 40%;
+    /*width: 40%;*/
     /*height: 300px;*/
     margin-top: 40px;
     border:2px outset lightblue;
@@ -48,6 +60,7 @@
     margin: 2px 2px;
     cursor: pointer;
 }
+
 .start{
     font-size: 15px;
     font-family: "Comic Sans MS", cursive, sans-serif;
@@ -70,7 +83,6 @@
 }
 
 .instruction{
-
     font-size: 15px;
 }
 
@@ -102,8 +114,8 @@ p.top{
 .info{
     font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 20px;
-
 }
+
 table, td, th {
     border: 2px solid white;
 }
@@ -117,6 +129,7 @@ th, td {
     height: 50px;
     text-align: center;
 }
+
 </style>
 {% endblock %}
 {% block scripts %}
@@ -124,11 +137,14 @@ th, td {
     <script src="{% static "highcharts/highcharts.js" %}"></script>
     <script src="{% static "highcharts/modules/exporting.js" %}"></script>
     <script>
-    var data = {{ catch_history|json }}
+    var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
         Highcharts.chart('graph', {
             title: {
                 text: 'Fishery History'
+            },
+            chart: {
+                backgroundColor: 'lightblue'
             },
             yAxis: {
                 title: {
@@ -136,6 +152,7 @@ th, td {
                 }
             },
             legend: {
+                y: -40, // make room for subtitle
                 layout: 'vertical',
                 align: 'right',
                 verticalAlign: 'middle'
@@ -148,8 +165,31 @@ th, td {
             },
             series: [{
                 name: 'Fish count',
-                data: {{ catch_history|json }}
+                data: {{ each_year_fish_history|json }},
+                marker: {
+                    fillColor: '#FFFFFF',
+                    lineColor: null,
+                    lineWidth: 2
+                    }
+                }, {
+                    name: 'Yield',
+                    data: {{ each_year_yield_history|json }},
+                    marker: {
+                        fillColor: '#8E44AD',
+                        lineColor: '#8E44AD',
+                        lineWidth: 2
+                    }
+                }, {
+                    name: 'Sustainable Yield',
+                    data: {{ each_year_sustainable_yield_history|json }},
+                    marker: {
+                        //symbol: 'cross',
+                        fillColor: '#F5B041',
+                        lineColor: '#F5B041',
+                        lineWidth: 2
+                    }
             }],
+
             responsive: {
                 rules: [{
                     condition: {
@@ -166,6 +206,12 @@ th, td {
         }
     });
     }
+
+    // Catch buttons
+    $(".choice-button").click(function(){
+        $($(this).data("target")).trigger('click');
+        $(".next-button").trigger('click');
+    });
     </script>
 {% endblock %}
 {% block content %}
@@ -173,16 +219,24 @@ th, td {
     <p class="top" style="z-index: 1">LSM4225 GONE FISHING</p>
     <p class="bgsize title">Welcome, {{ player_name }}!</p>
 
-    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+    <div class="container-fluid row">
+        <!-- Page padding-->
+        <div class="col-xs-0 col-md-1"> </div>
+        <div class="hide">
+            {% formfield player.num_fish_caught_this_year%}
+            {% next_button %}
+        </div>
+        <div class="back choiceback col-xs-12 col-md-4">
+            <p class="info">How many fish do you want to catch?</p>
+            <div class="choice-buttons">
+                <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
+                <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
+                <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
+            </div>
+        </div>
+        <div class="col-xs-0 col-md-1"> </div>
 
-    <div class="container-fluid row choiceback col-sm-5 col-md-5 col-lg-4">
-        {% formfield player.num_fish_caught_this_year with label="How many fish do you want to catch?" %}
-        {% next_button %}
-    </div>
-
-    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-
-    <div class="container-fluid row infoback col-sm-5 col-md-5 col-lg-6">
+    <div class="container-fluid row back infoback col-xs-12 col-sm-5 col-md-5 col-lg-6">
          <table class="info">
                <tr>
                    <th>Intrinsic growth rate(r)
@@ -214,7 +268,7 @@ th, td {
     <div class="row">
         <div class="col-sm-1 col-md-1 col-lg-1"> </div>
         <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div align="center" class="fishback col-sm-3 col-md-5 col-lg-3">
+        <div align="center" class="back fishback col-sm-3 col-md-5 col-lg-3">
             <p class="info">
                 GRAPH
                 <div id="graph"></div>
@@ -225,5 +279,5 @@ th, td {
 
     <div class="bottom">@National University of Singapore - Biology</div>
 </div>
-
-    {% endblock %}-w---------___
+<div class="bottom"><p>@National University of Singapore - Biology</p></div>
+{% endblock %}
