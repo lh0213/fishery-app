@@ -124,7 +124,7 @@ SESSION_CONFIGS = [
         'strength_of_density_regulation': 0.001,
         # Round to a nicer number because why not
         'starting_fish_count': 10,
-        'use_browser_bots': True
+        'use_browser_bots': False 
     },
 ]
 
