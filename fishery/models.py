@@ -70,6 +70,10 @@ class Group(BaseGroup):
             self.subsession.this_year_yield = year_yield
             self.subsession.this_year_sustainable_yield = year_sustainable_yield
 
+        # Store the result and pass to the next round later
+        self.subsession.num_fish_at_start_of_year = num_fish_for_next_year
+
+        if num_fish_for_next_year > 0:
             # Only give payoff if there are positive number of fish left
             for p in self.get_players():
                 p.payoff = p.num_fish_caught_this_year
