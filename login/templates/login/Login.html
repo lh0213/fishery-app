@@ -1,6 +1,7 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% block content %}
 
 <style>
@@ -23,7 +24,7 @@
 <p class="top">LSM4225 GONE FISHING</p>
 
     <div class="back container-fluid">
-        <p class="bgsize">Log In</p>
+        <p class="bgsize" style="width:100%" >Log In</p>
         <div class="smsize">
         {% formfield player.user_name with label="Your name:" %}
         {% formfield player.student_id with label="Enter Your Student ID:" %}
@@ -31,7 +32,9 @@
         </div>
     </div>
 
-<div class="bottom">@National University of Singapore - Biology</div>
+<div class="bottom">
+    @National University of Singapore - <a href="http://www.lifesciences.nus.edu.sg/">Life Sciences</a>
+</div>
 </div>
 
 
