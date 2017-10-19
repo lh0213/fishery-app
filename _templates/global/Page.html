@@ -71,14 +71,17 @@ h1 {
     font-family: "Comic Sans MS", cursive, sans-serif;
 }
 
+h3 {
+    font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
 p.top {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    width: 100vw;
-    padding-top: 20px;
-    padding-bottom: 3px;
+    vertical-align: middle;
+    padding:1rem;
     text-align: center;
     font-weight: bold;
     font-size: 20px;
@@ -87,6 +90,7 @@ p.top {
     background: black;
 }
 
+
 div.bottom{
     position: fixed;
     right: 0;
@@ -94,9 +98,10 @@ div.bottom{
     left: 0;
     padding: 1rem;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 15px;
     font-family: "Comic Sans MS", cursive, sans-serif;
     color: white;
+    vertical-align: middle;
     text-align: center;
     background: black;
 }
@@ -115,11 +120,22 @@ button {
     font-size: 19px;
 }
 
+
+
+
 /*Use a media query to add a break point at 800px:*/
 @media (max-width:600px) {
   div.back, .centre, .info {
     width:100%;/*The width is 100%, when the viewport is 800px or smaller*/
   }
+
+    p.top {
+      font-size:13px;
+    }
+    h3 {
+        font-size:13px;
+
+    }
 }
 
 </style>
