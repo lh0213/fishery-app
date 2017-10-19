@@ -1,36 +1,7 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 {% block content %}
-
-<style>
-.bottom{
-    position: absolute;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    height: 60px;
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 15px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: white;
-    text-align: center;
-    vertical-align: middle;
-    background: lightblue;
-}
-
-.footer {
-    font-weight: bold;
-    font-size: 15px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: white;
-    text-align: center;
-    background: lightblue;
-}
-
-</style>
 
 <div>
     <p class="top">
@@ -40,9 +11,9 @@
     <div class="back container-fluid">
         <p class="bgsize" style="width:100%" >Log In</p>
         <div class="smsize">
-        {% formfield player.user_name with label="Your name:" %}
-        {% formfield player.student_id with label="Enter Your Student ID:" %}
-        {% next_button %}
+            {% formfield player.user_name with label="Your name:" %}
+            {% formfield player.student_id with label="Enter Your Student ID:" %}
+            {% next_button %}
         </div>
     </div>
 
