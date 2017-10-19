@@ -1,13 +1,38 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 {% block styles %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+* {
+    box-sizing: border-box;
+}
+
+.boldtext {
+    text-align: center;
+
+    font-size: 19px;
+    font-weight: 900;
+    padding:10px;
+}
+
+.highlight {
+    font-size: 19px;
+    font-weight: 900;
+    color: royalblue;
+}
+
+.normaltext {
+    text-align: center;
+    width:90%;
+    font-size: 17px;
+    font-weight: 900;
+}
+
 
 .choiceback{
-    position: absolute;
-    left: 12%;
+    width: 35%;
+    float: left;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 28%;
     height: 230px;
     margin-top: 20px;
     border-style:solid;
@@ -18,35 +43,37 @@
     font-size: 20px;
 }
 
+
+
 .choiceback button {
-    width: 32%;
+    width: 90%;
 }
 
-.choicebuttons {
+.blank {
+    width:5%;
     margin-top: 20px;
+    height: 230px;
+    float: left;
 }
 
 
 .infoback{
-    position: relative;
-    left: 30%;
+    width: 60%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 80%;
     height: 230px;
+    float: left;
     margin-top: 20px;
     border-style:solid;
     border-width: 5px;
     border-color:lightskyblue;
     background-color: floralwhite;
-    vertical-align: middle;
 }
 
 .fishback{
-    left: 15%;
+    width: 100%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 80%;
     /*height: 300px;*/
-    margin-top: 40px;
+    margin-top: 300px;
     border-style:solid;
     border-width: 5px;
     border-color:lightskyblue;
@@ -67,6 +94,12 @@
     cursor: pointer;
 }
 
+mark{
+    font-size:25px;
+    color:dodgerblue;
+    background-color: floralwhite;
+}
+
 .start{
     font-size: 15px;
     border-radius: 8px;
@@ -75,7 +108,7 @@
 
 .title {
     color: white;
-    margin-top: 40px;
+    margin-top: 60px;
     text-align: center;
     font-size: 35px;
 }
@@ -90,40 +123,11 @@
     font-size: 15px;
 }
 
-p.top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    padding-top: 20px;
-    padding-bottom: 3px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    background: black;
-}
-
-.bottom{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    background: lightblue;
-}
-
-table, td, th {
-    border: 2px solid white;
-}
 
 table {
     border-collapse: collapse;
     width: 100%;
+    border: 2px solid white;
 }
 
 th, td {
@@ -131,8 +135,36 @@ th, td {
     text-align: center;
 }
 
+/*Use a media query to add a break point at 800px:*/
+@media (max-width:650px) {
+  .normaltext{
+    font-size: 15px;
+  }
+
+    .choiceback{
+        width: 100%;
+    }
+
+    .blank{
+        width: 0%;
+    }
+
+    .infoback{
+        margin-top: 50px;
+        width: 100%;
+    }
+
+    .fishback{
+        margin-top: 600px;
+        width: 100%;
+    }
+
+}
+
 </style>
 {% endblock %}
+
+
 {% block scripts %}
     <!-- Highchart stuff -->
     <script src="{% static "highcharts/highcharts.js" %}"></script>
@@ -215,34 +247,50 @@ th, td {
     });
     </script>
 {% endblock %}
+
+
 {% block content %}
 <div>
-    <p class="top" style="z-index: 1" >LSM4225 GONE FISHING</p>
-    <p class="bgsize title">Welcome, {{ player_name }}!</p>
+    <p class="top">
+        LSM4255 GONE FISHING
+    </p>
 
-    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-    <div class="container-fluid row choiceback col-sm-2 col-md-2 col-lg-2">
+    <p class="title">
+        Welcome, {{ player_name }}!
+    </p>
+
+    <div class="choiceback">
         <!-- Page padding-->
-        <div class="col-xs-0 col-md-1"> </div>
+
         <div class="hide">
             {% formfield player.num_fish_caught_this_year%}
             {% next_button %}
         </div>
         </br>
-        </br>
-             <p class="info">How many fish do you want to catch?</p>
+             <p class="boldtext">How many fish do you want to <mark>catch</mark>?</p>
         </br>
         <div class="choice-buttons">
-            <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
-            <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
-            <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
+            <table class="table1" width="100%">
+                <tr width="100%">
+                    <td width = "33.33%">
+                        <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
+                    </td>
+                    <td width = "33.33%">
+                        <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
+                    </td>
+                    <td width = "33.33%">
+                        <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
-    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+    <div class="blank"></div>
 
-    <div class="container-fluid row infoback col-xs-6 col-sm-6 col-md-6 col-lg-6">
-         <table class="info">
+    <div class="infoback">
+        </br>
+         <table class="normaltext" width="90%" align="center">
                <tr>
                    <th>Intrinsic growth rate(r)
                    </th>
@@ -253,7 +301,7 @@ th, td {
                    <th>Total number of fish
                    </th>
                </tr>
-               <tr>
+               <tr class="highlight">
                    <td>{{ intrinsic_growth_rate }}</td>
                    <td>{{ strength_of_density_regulation }}</td>
                    <td>{{ sustainable_yield }}</td>
@@ -261,28 +309,26 @@ th, td {
                </tr>
            </table>
            <br/>
-         <p class="info">
-             Total number of fishes you have caught:
+         <p class="normaltext">
+             Total number of fish you've caught:
              {{ player.participant.payoff }}
          </p>
 
     </div>
 
-    <div class="col-sm-2 col-md-2 col-lg-3"> </div>
 
-    <div class="row">
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div align="center" class="fishback col-sm-3 col-md-5 col-lg-3">
-            <p class="info">
-                GRAPH
-                <div id="graph"></div>
-            </p>
-        </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+    <div class="fishback">
+        <p class="normaltext">
+            <div id="graph"></div>
+        </p>
     </div>
 
-    <div class="bottom">@National University of Singapore - Biology</div>
+
+    <div class="bottom">
+        <p>
+            @National University of Singapore - <a href="http://www.lifesciences.nus.edu.sg/">Life Sciences</a>
+        </p>
+    </div>
 </div>
 
-    {% endblock %}
+{% endblock %}
