@@ -5,20 +5,47 @@
     Thank you
 {% endblock %}
 
-{% block content %}
+{% block styles %}
+    <style>
+        mark{
+            font-size:25px;
+            color:dodgerblue;
+            background-color: floralwhite;
+        }
+    @media (max-width:650px) {
+      .back {
+          margin-top: 50px;
+      }
+    }
+    </style>
+{% endblock %}
 
-    <div class="panel panel-default" style="margin-bottom:10px">
-        <div class="panel-body">
-            <p><strong>Result:</strong></p>
-            <p>Your caught {{ participant.payoff }} in total.</p>
+{% block content %}
+<div>
+    <p class="top">
+        LSM4255 GONE FISHING
+    </p>
+
+    <div class="back container-fluid">
+        <p class="bgsize" style="width:100%;color:red" >Oops</p>
+        <p class="bgsize" style="width:100%;color:red" >OUT OF FISH!!!</p>
+        <p class="bgsize" style="width:100%;text-size:15px" >Final Result</p>
+        <div class="smsize">
+            <p>
+                Your caught <mark>{{ participant.payoff }}</mark> in total.
+                <p></p>
+            </p>
 
             {% next_button %}
         </div>
     </div>
 
+    <div class="bottom">
+        <p>
+            @National University of Singapore - <a href="http://www.lifesciences.nus.edu.sg/">Life Sciences</a>
+        </p>
+    </div>
 
+</div>
 {% endblock %}
 
-{% block form %}
-
-{% endblock %}
