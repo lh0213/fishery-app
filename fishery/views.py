@@ -1,7 +1,7 @@
 from . import models
 from . import utils
 from ._builtin import Page, WaitPage
-
+import math
 
 class TeacherStartPage(Page):
     # def is_displayed(self):
@@ -65,7 +65,7 @@ class StudentCatch(Page):
 
             # Table Variables
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-            "sustainable_yield": self.subsession.this_year_sustainable_yield,
+            "sustainable_yield": math.ceil(self.subsession.this_year_sustainable_yield*1000)/1000,
 
             # Table Constants
             "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],
