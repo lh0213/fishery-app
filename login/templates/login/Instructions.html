@@ -1,65 +1,58 @@
 {% extends "global/Page.html" %}
-{% load otree_tags staticfiles %}
+{% load staticfiles otree_tags %}
 
 {% block content %}
 
-<style>
-.bottom{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 20px;
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    color: white;
-    text-align: center;
-    background: lightblue;
-}
-</style>
-
 <div>
-<p class="top">LSM4225 GONE FISHING</p>
-</div>
+    <p class="top">
+        LSM4255 GONE FISHING
+    </p>
 
-    <div class="back container-fluid" style="width: 50vw">
+    <div class="back2 container-fluid">
 
-        <p class="bgsize">
+        <p class="bgsize" style="width:100%">
             Fishery App Instructions
         </p>
 
         <div class="smsize">
-        <p>
-            You are a fisherman. In the beginning, there are {{ total_fish }}
-            fish in the fishery.
-            Every year your friends and you can catch some fish by choosing the number
-            of fish you want to catch.
-        </p>
-        <p>
-            The default parameters are as follows:
-                <table class="table">
-                    {# Part4: show parameters #}
-                    <tr>
-                        <td>Intrinsic growth rate(r)</td><td>{{ intrinsic_growth_rate }}</td>
-                    </tr>
-                    <tr>
-                        <td>Strength of density regulation(a)</td><td>{{ strength_of_density_regulation }}</td>
-                    </tr>
-                    <tr>
-                        <td>Sustainable yield(H_max)</td><td>{{ sustainable_yield }}</td>
-                    </tr>
-                    <tr>
-                        <td>Total number of fish left</td><td>{{ total_fish }}</td>
-                    </tr>
-                </table>
+            <p>
+                You are a fisherman. In the beginning, there are {{ total_fish }}
+                fish in the fishery.
+                Every year your friends and you can catch some fish by choosing the number
+                of fish you want to catch.
+            </p>
+            <p>
+                The default parameters are as follows:
+                    <table class="table">
+                        {# Part4: show parameters #}
+                        <tr>
+                            <td width = "70%">Intrinsic growth rate(r)</td>
+                            <td width = "30%">{{ intrinsic_growth_rate }}</td>
+                        </tr>
+                        <tr>
+                            <td width = "70%">Strength of density regulation(a)</td>
+                            <td width = "30%">{{ strength_of_density_regulation }}</td>
+                        </tr>
+                        <tr>
+                            <td width = "70%">Sustainable yield(H_max)</td>
+                            <td width = "30%">{{ sustainable_yield }}</td>
+                        </tr>
+                        <tr>
+                            <td width = "70%">Total number of fish left</td>
+                            <td width = "30%">{{ total_fish }}</td>
+                        </tr>
+                    </table>
 
-        </p>
-
-    {% next_button %}
+            </p>
+            {% next_button %}
         </div>
     </div>
-    <div class="bottom">@National University of Singapore - Biology</div>
 
+    <div class="bottom">
+        <p>
+            @National University of Singapore - <a href="http://www.lifesciences.nus.edu.sg/">Life Sciences</a>
+        </p>
+    </div>
+</div>
 
 {% endblock %}
