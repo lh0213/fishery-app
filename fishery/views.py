@@ -37,12 +37,17 @@ class TeacherFinalResult(Page):
 class StudentCatch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
-    timeout_seconds = 30
+    ##timeout_seconds = 30
 
     def is_displayed(self):
         return self.session.vars['continue_game']
 
     def vars_for_template(self):
+        if self.round_number == 1:
+            rate = self.session.config['intrinsic_growth_rate']
+            n_t = self.session.config['starting_fish_count']
+            a = self.session.config['strength_of_density_regulation']
+            year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
 
         if self.round_number > 1:
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
@@ -53,6 +58,9 @@ class StudentCatch(Page):
 
             self.subsession.this_year_yield = self.subsession.in_round(self.round_number - 1) \
                 .this_year_yield
+
+            year_sustainable_yield = self.subsession.this_year_sustainable_yield
+
 
         return {
             "year_number": utils.display_year(self),
@@ -65,7 +73,7 @@ class StudentCatch(Page):
 
             # Table Variables
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-            "sustainable_yield": math.ceil(self.subsession.this_year_sustainable_yield*1000)/1000,
+            "sustainable_yield": math.ceil(year_sustainable_yield * 1000)/1000,
 
             # Table Constants
             "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],
