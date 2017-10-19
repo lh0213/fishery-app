@@ -71,9 +71,10 @@ h1 {
 }
 
 p.top {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
+    right: 0;
     width: 100vw;
     padding-top: 20px;
     padding-bottom: 3px;
@@ -111,6 +112,13 @@ button {
 
 .info{
     font-size: 19px;
+}
+
+/*Use a media query to add a break point at 800px:*/
+@media (max-width:600px) {
+  div.back, .centre, .info {
+    width:100%;/*The width is 100%, when the viewport is 800px or smaller*/
+  }
 }
 
 </style>
