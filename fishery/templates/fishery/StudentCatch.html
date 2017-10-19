@@ -9,7 +9,6 @@
 
 .boldtext {
     text-align: center;
-
     font-size: 19px;
     font-weight: 900;
     padding:10px;
@@ -80,47 +79,18 @@
     background-color: floralwhite;
 }
 
-
-.button{
-    background-color: #ffdb4d;
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    margin: 2px 2px;
-    cursor: pointer;
-}
-
 mark{
     font-size:25px;
     color:dodgerblue;
     background-color: floralwhite;
 }
 
-.start{
-    font-size: 15px;
-    border-radius: 8px;
-
-}
 
 .title {
     color: white;
     margin-top: 60px;
     text-align: center;
     font-size: 35px;
-}
-
-.smsize{
-    color: white;
-    text-align: center;
-	font-size: 20px;
-}
-
-.instruction{
-    font-size: 15px;
 }
 
 
@@ -311,7 +281,7 @@ th, td {
            <br/>
          <p class="normaltext">
              Total number of fish you've caught:
-             {{ player.participant.payoff }}
+             <mark style="font-size:15px">{{ player.participant.payoff }}</mark>
          </p>
 
     </div>
