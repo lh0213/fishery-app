@@ -23,7 +23,7 @@
 .normaltext {
     text-align: center;
     width:90%;
-    font-size: 17px;
+    font-size: 20px;
     font-weight: 900;
 }
 
@@ -49,19 +49,30 @@
 }
 
 .blank {
-    width:5%;
+    width:2%;
     margin-top: 20px;
     height: 230px;
     float: left;
 }
 
-
-.infoback{
-    width: 60%;
+.gameback{
+    width: 63%;
     font-family: "Comic Sans MS", cursive, sans-serif;
     height: 230px;
     float: left;
     margin-top: 20px;
+    border-style:solid;
+    border-width: 5px;
+    border-color:lightskyblue;
+    background-color: floralwhite;
+    align: center;
+}
+
+.infoback{
+    width: 100%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /*height: 300px;*/
+    margin-top: 280px;
     border-style:solid;
     border-width: 5px;
     border-color:lightskyblue;
@@ -72,7 +83,7 @@
     width: 100%;
     font-family: "Comic Sans MS", cursive, sans-serif;
     /*height: 300px;*/
-    margin-top: 300px;
+    margin-top: 20px;
     border-style:solid;
     border-width: 5px;
     border-color:lightskyblue;
@@ -107,6 +118,13 @@ th, td {
 
     .choiceback{
         width: 100%;
+        height:200px;
+    }
+
+    .gameback{
+        margin-top:5px;
+        width: 100%;
+
     }
 
     .blank{
@@ -114,15 +132,15 @@ th, td {
     }
 
     .infoback{
-        margin-top: 50px;
+        margin-top: 520px;
         width: 100%;
+        height:190px;
     }
 
     .fishback{
-        margin-top: 600px;
+        margin-top: 30px;
         width: 100%;
     }
-
 }
 
 </style>
@@ -133,6 +151,44 @@ th, td {
     <!-- Highchart stuff -->
     <script src="{% static "highcharts/highcharts.js" %}"></script>
     <script src="{% static "highcharts/modules/exporting.js" %}"></script>
+    <script>
+        var  game_level = {{ game_level }}
+        switch(game_level) {
+            case 1:
+                $('#img_1').removeClass('hide');
+                break;
+            case 2:
+                $('#img_2').removeClass('hide');
+                break;
+            case 3:
+                $('#img_3').removeClass('hide');
+                break;
+            case 4:
+                $('#img_4').removeClass('hide');
+                break;
+            case 5:
+                $('#img_5').removeClass('hide');
+                break;
+            case 6:
+                $('#img_6').removeClass('hide');
+                break;
+            case 7:
+                $('#img_7').removeClass('hide');
+                break;
+            case 8:
+                $('#img_8').removeClass('hide');
+                break;
+            case 9:
+                $('#img_9').removeClass('hide');
+                break;
+            case 10:
+                $('#img_10').removeClass('hide');
+                break;
+            default:
+                $('#img_10').removeClass('hide');
+        }
+
+    </script>
     <script>
     var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
@@ -214,6 +270,7 @@ th, td {
 
 
 {% block content %}
+
 <div>
     <p class="top">
         LSM4255 GONE FISHING
@@ -232,6 +289,7 @@ th, td {
         </div>
         </br>
              <p class="boldtext">How many fish do you want to <mark>catch</mark>?</p>
+            <!-- <p class="normaltext">No. of fish required to upgrade: {{ upgrade_distance }} </p>-->
         </br>
         <div class="choice-buttons">
             <table class="table1" width="100%">
@@ -251,6 +309,21 @@ th, td {
     </div>
 
     <div class="blank"></div>
+
+    <div class="gameback">
+        <p>
+            <img class="hide" id="img_1" src="{% static "global/1.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_2" src="{% static "global/2.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_3" src="{% static "global/3.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_4" src="{% static "global/4.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_5" src="{% static "global/5.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_6" src="{% static "global/6.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_7" src="{% static "global/7.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_8" src="{% static "global/8.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_9" src="{% static "global/9.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_10" src="{% static "global/10.jpg" %}" width=100% height=220px>
+        </p>
+    </div>
 
     <div class="infoback">
         </br>
@@ -277,9 +350,7 @@ th, td {
              Total number of fish you've caught:
              <mark style="font-size:15px">{{ player.participant.payoff }}</mark>
          </p>
-
     </div>
-
 
     <div class="fishback">
         <p class="normaltext">
