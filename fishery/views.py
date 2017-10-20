@@ -67,8 +67,8 @@ class StudentCatch(Page):
             "player_name": self.participant.vars['name'],
 
             # choice back variables
-            "last_year_average_student_caught": self.subsession.this_year_average_yield,
-            "total_average_student_caught": self.subsession.total_average_yield,
+            "last_year_average_student_caught": math.ceil(self.subsession.this_year_average_yield*100)/100,
+            "total_average_student_caught": math.ceil(self.subsession.total_average_yield*100)/100,
 
             # debug info
             "numPlayer": self.subsession.numPlayers,
