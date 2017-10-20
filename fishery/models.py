@@ -30,6 +30,7 @@ class Subsession(BaseSubsession):
     this_year_yield = models.FloatField()
     this_year_sustainable_yield = models.FloatField()
 
+    # average info attributes
     this_year_harvest = models.IntegerField(initial=0)
     total_harvest = models.IntegerField(initial=0)
     numPlayers = models.IntegerField(initial=0)
@@ -39,7 +40,6 @@ class Subsession(BaseSubsession):
     def creating_session(self):
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
         self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
-
 
     # add this method to automatically generate the graph result of the game
     def vars_for_admin_report(self):
@@ -53,10 +53,12 @@ class Group(BaseGroup):
         # Need to decide whether to end game here if there are no more fish
         # Returns boolean: whether to continue the game
         # Using variable names as used in the Beverton-Holt model
+
         # (h)arvest: H, total number of fish caught in the round
         # n_t: number of fsh at start of year
         # (r)ate: r, intrinsic growth rate
         # a: strength of density regulation
+
         n_t = self.subsession.num_fish_at_start_of_year
         rate = self.session.config['intrinsic_growth_rate']
         a = self.session.config['strength_of_density_regulation']
@@ -67,6 +69,7 @@ class Group(BaseGroup):
         ave_year = self.subsession.this_year_average_yield
         ave_total = self.subsession.total_average_yield
 
+        # initializes values
         harvest = 0
         numP = len(self.get_players())
 
