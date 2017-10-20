@@ -74,7 +74,7 @@ class Group(BaseGroup):
 
         # Updates harvest values
         self.total_harvest += self.this_year_harvest
-        self.this_year_average_yield = self.this_year_harvest / self.numPlayers,
+        self.this_year_average_yield = self.this_year_harvest / self.numPlayers
         self.total_average_yield = self.total_harvest / (self.numPlayers * self.subsession.round_number)
 
         # Applys the formula here

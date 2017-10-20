@@ -54,7 +54,7 @@ class StudentCatch(Page):
 
             # choice back variables
             "last_year_average_student_caught": self.group.this_year_average_yield,
-            "total_average_student_caught": self.total_average_yield,
+            "total_average_student_caught": self.group.total_average_yield,
 
             # Graph Variables
             "each_year_fish_history": utils.catch_fish_history(self.subsession),
