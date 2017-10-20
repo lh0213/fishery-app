@@ -33,6 +33,7 @@ class Subsession(BaseSubsession):
     def creating_session(self):
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
         self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
+        award_level = 1
 
     # add this method to automatically generate the graph result of the game
     def vars_for_admin_report(self):
@@ -62,8 +63,6 @@ class Group(BaseGroup):
         year_yield = harvest
         year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
 
-        # wrong: year_sustainable_yield = math.pow(-1 + math.sqrt(1 + rate), 2) / a
-
         if num_fish_for_next_year > 0:
             # Store the result and pass to the next round later
             self.subsession.num_fish_at_start_of_year = num_fish_for_next_year
@@ -87,6 +86,13 @@ class Player(BasePlayer):
     # Name may be duplicated, use student id as the key
     user_name = models.CharField()
     student_id = models.CharField()
+    game_level = models.IntegerField()
+    next_upgrade_fish_count = models.IntegerField()
+    is_upgrade = models.BooleanField()
+
+    game_level = 1
+    next_upgrade_fish_count = 2
+    is_upgrade = False
 
     # It will be included in a “documentation” file
     # that is available on the “Data Export” page.
@@ -98,10 +104,20 @@ class Player(BasePlayer):
         widget=widgets.RadioSelect()
     )
 
-    #def role(self):
-    #    if self.user_name == 'teacher' and self.student_id == '00000000':
-    #        return 'Teacher'
-    #    else:
-    #        return 'Student'
+    def set_payoffs(self):
+        self.is_upgrade = False
+        numPlayers = self.subsession.get_players().length
 
-    #Public void catchFish(int numOfFishCaughtThisYear);
+        if self.participant.payoff > self.next_upgrade_fish_count and self.game_level <= 10:
+            self.game_level = self.game_level + 1
+
+            while self.next_upgrade_fish_count < self.payoff:
+                self.next_upgrade_fish_count += math.ceil(self.subsession.num_fish_at_start_of_year / numPlayers)
+                self.next_upgrade_fish_count += 1
+            self.is_upgrade = True
+
+
+
+
+
+

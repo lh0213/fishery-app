@@ -1,13 +1,37 @@
 {% extends "global/Page.html" %}
 {% load staticfiles otree_tags %}
 {% block styles %}
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
+* {
+    box-sizing: border-box;
+}
+
+.boldtext {
+    text-align: center;
+    font-size: 19px;
+    font-weight: 900;
+    padding:10px;
+}
+
+.highlight {
+    font-size: 19px;
+    font-weight: 900;
+    color: royalblue;
+}
+
+.normaltext {
+    text-align: center;
+    width:90%;
+    font-size: 20px;
+    font-weight: 900;
+}
+
 
 .choiceback{
-    position: absolute;
-    left: 12%;
+    width: 35%;
+    float: left;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 28%;
     height: 230px;
     margin-top: 20px;
     border-style:solid;
@@ -18,35 +42,48 @@
     font-size: 20px;
 }
 
+
+
 .choiceback button {
-    width: 32%;
+    width: 90%;
 }
 
-.choicebuttons {
+.blank {
+    width:2%;
     margin-top: 20px;
+    height: 230px;
+    float: left;
 }
 
-
-.infoback{
-    position: relative;
-    left: 30%;
+.gameback{
+    width: 63%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 80%;
     height: 230px;
+    float: left;
     margin-top: 20px;
     border-style:solid;
     border-width: 5px;
     border-color:lightskyblue;
     background-color: floralwhite;
-    vertical-align: middle;
+    align: center;
+}
+
+.infoback{
+    width: 100%;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    /*height: 300px;*/
+    margin-top: 280px;
+    border-style:solid;
+    border-width: 5px;
+    border-color:lightskyblue;
+    background-color: floralwhite;
 }
 
 .fishback{
-    left: 15%;
+    width: 100%;
     font-family: "Comic Sans MS", cursive, sans-serif;
-    width: 80%;
     /*height: 300px;*/
-    margin-top: 40px;
+    margin-top: 20px;
     border-style:solid;
     border-width: 5px;
     border-color:lightskyblue;
@@ -54,76 +91,18 @@
 }
 
 
-.button{
-    background-color: #ffdb4d;
-    border: none;
-    color: white;
-    padding: 12px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-weight: bold;
-    margin: 2px 2px;
-    cursor: pointer;
-}
-
-.start{
-    font-size: 15px;
-    border-radius: 8px;
-
-}
-
 .title {
     color: white;
-    margin-top: 40px;
+    margin-top: 60px;
     text-align: center;
     font-size: 35px;
 }
 
-.smsize{
-    color: white;
-    text-align: center;
-	font-size: 20px;
-}
-
-.instruction{
-    font-size: 15px;
-}
-
-p.top {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    padding-top: 20px;
-    padding-bottom: 3px;
-    text-align: center;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    background: black;
-}
-
-.bottom{
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    padding: 1rem;
-    font-weight: bold;
-    font-size: 20px;
-    color: white;
-    text-align: center;
-    background: lightblue;
-}
-
-table, td, th {
-    border: 2px solid white;
-}
 
 table {
     border-collapse: collapse;
     width: 100%;
+    border: 2px solid white;
 }
 
 th, td {
@@ -131,12 +110,85 @@ th, td {
     text-align: center;
 }
 
+/*Use a media query to add a break point at 800px:*/
+@media (max-width:650px) {
+  .normaltext{
+    font-size: 15px;
+  }
+
+    .choiceback{
+        width: 100%;
+        height:200px;
+    }
+
+    .gameback{
+        margin-top:5px;
+        width: 100%;
+
+    }
+
+    .blank{
+        width: 0%;
+    }
+
+    .infoback{
+        margin-top: 520px;
+        width: 100%;
+        height:190px;
+    }
+
+    .fishback{
+        margin-top: 30px;
+        width: 100%;
+    }
+}
+
 </style>
 {% endblock %}
+
+
 {% block scripts %}
     <!-- Highchart stuff -->
     <script src="{% static "highcharts/highcharts.js" %}"></script>
     <script src="{% static "highcharts/modules/exporting.js" %}"></script>
+    <script>
+        var  game_level = {{ game_level }}
+        switch(game_level) {
+            case 1:
+                $('#img_1').removeClass('hide');
+                break;
+            case 2:
+                $('#img_2').removeClass('hide');
+                break;
+            case 3:
+                $('#img_3').removeClass('hide');
+                break;
+            case 4:
+                $('#img_4').removeClass('hide');
+                break;
+            case 5:
+                $('#img_5').removeClass('hide');
+                break;
+            case 6:
+                $('#img_6').removeClass('hide');
+                break;
+            case 7:
+                $('#img_7').removeClass('hide');
+                break;
+            case 8:
+                $('#img_8').removeClass('hide');
+                break;
+            case 9:
+                $('#img_9').removeClass('hide');
+                break;
+            case 10:
+                $('#img_10').removeClass('hide');
+                break;
+            default:
+                $('#img_10').removeClass('hide');
+        }
+
+    </script>
     <script>
     var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
@@ -215,34 +267,67 @@ th, td {
     });
     </script>
 {% endblock %}
-{% block content %}
-<div>
-    <p class="top" style="z-index: 1" >LSM4225 GONE FISHING</p>
-    <p class="bgsize title">Welcome, {{ player_name }}!</p>
 
-    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-    <div class="container-fluid row choiceback col-sm-2 col-md-2 col-lg-2">
+
+{% block content %}
+
+<div>
+    <p class="top">
+        LSM4255 GONE FISHING
+    </p>
+
+    <p class="title">
+        Welcome, {{ player_name }}!
+    </p>
+
+    <div class="choiceback">
         <!-- Page padding-->
-        <div class="col-xs-0 col-md-1"> </div>
+
         <div class="hide">
             {% formfield player.num_fish_caught_this_year%}
             {% next_button %}
         </div>
         </br>
-        </br>
-             <p class="info">How many fish do you want to catch?</p>
+             <p class="boldtext">How many fish do you want to <mark>catch</mark>?</p>
+            <!-- <p class="normaltext">No. of fish required to upgrade: {{ upgrade_distance }} </p>-->
         </br>
         <div class="choice-buttons">
-            <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
-            <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
-            <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
+            <table class="table1" width="100%">
+                <tr width="100%">
+                    <td width = "33.33%">
+                        <button data-target="#id_num_fish_caught_this_year_1" class="choice-button btn btn-info btn-lg">0</button>
+                    </td>
+                    <td width = "33.33%">
+                        <button data-target="#id_num_fish_caught_this_year_2" class="choice-button btn btn-info btn-lg">1</button>
+                    </td>
+                    <td width = "33.33%">
+                        <button data-target="#id_num_fish_caught_this_year_3" class="choice-button btn btn-info btn-lg">2</button>
+                    </td>
+                </tr>
+            </table>
         </div>
     </div>
 
-    <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+    <div class="blank"></div>
 
-    <div class="container-fluid row infoback col-xs-6 col-sm-6 col-md-6 col-lg-6">
-         <table class="info">
+    <div class="gameback">
+        <p>
+            <img class="hide" id="img_1" src="{% static "global/1.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_2" src="{% static "global/2.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_3" src="{% static "global/3.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_4" src="{% static "global/4.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_5" src="{% static "global/5.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_6" src="{% static "global/6.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_7" src="{% static "global/7.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_8" src="{% static "global/8.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_9" src="{% static "global/9.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_10" src="{% static "global/10.jpg" %}" width=100% height=220px>
+        </p>
+    </div>
+
+    <div class="infoback">
+        </br>
+         <table class="normaltext" width="90%" align="center">
                <tr>
                    <th>Intrinsic growth rate(r)
                    </th>
@@ -253,7 +338,7 @@ th, td {
                    <th>Total number of fish
                    </th>
                </tr>
-               <tr>
+               <tr class="highlight">
                    <td>{{ intrinsic_growth_rate }}</td>
                    <td>{{ strength_of_density_regulation }}</td>
                    <td>{{ sustainable_yield }}</td>
@@ -261,28 +346,24 @@ th, td {
                </tr>
            </table>
            <br/>
-         <p class="info">
-             Total number of fishes you have caught:
-             {{ player.participant.payoff }}
+         <p class="normaltext">
+             Total number of fish you've caught:
+             <mark style="font-size:15px">{{ player.participant.payoff }}</mark>
          </p>
-
     </div>
 
-    <div class="col-sm-2 col-md-2 col-lg-3"> </div>
-
-    <div class="row">
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
-        <div align="center" class="fishback col-sm-3 col-md-5 col-lg-3">
-            <p class="info">
-                GRAPH
-                <div id="graph"></div>
-            </p>
-        </div>
-        <div class="col-sm-1 col-md-1 col-lg-1"> </div>
+    <div class="fishback">
+        <p class="normaltext">
+            <div id="graph"></div>
+        </p>
     </div>
 
-    <div class="bottom">@National University of Singapore - Biology</div>
+
+    <div class="bottom">
+        <p>
+            @National University of Singapore - <a href="http://www.lifesciences.nus.edu.sg/">Life Sciences</a>
+        </p>
+    </div>
 </div>
 
-    {% endblock %}
+{% endblock %}
