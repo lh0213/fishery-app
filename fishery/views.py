@@ -1,3 +1,4 @@
+from fishery.models import Constants
 from . import models
 from . import utils
 from ._builtin import Page, WaitPage
@@ -19,9 +20,11 @@ class StudentCatch(Page):
             n_t = self.session.config['starting_fish_count']
             a = self.session.config['strength_of_density_regulation']
             year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
+
+            #game
             url_pic = "global/1.jpg"
-            self.participant.game_level = 1
-            self.participant.next_upgrade_fish_count = 2
+            self.player.game_level = 1
+            self.player.next_upgrade_fish_count = 2
 
         if self.round_number > 1:
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
@@ -33,9 +36,20 @@ class StudentCatch(Page):
             self.subsession.this_year_yield = self.subsession.in_round(self.round_number - 1) \
                 .this_year_yield
 
+            self.subsession.this_year_harvest = self.subsession.in_round(self.round_number - 1) \
+                .this_year_harvest
+            self.subsession.total_harvest = self.subsession.in_round(self.round_number - 1) \
+                .total_harvest
+            self.subsession.numPlayers = self.subsession.in_round(self.round_number - 1) \
+                .numPlayers
+            self.subsession.this_year_average_yield = self.subsession.in_round(self.round_number - 1) \
+                .this_year_average_yield
+            self.subsession.total_average_yield = self.subsession.in_round(self.round_number - 1) \
+                .total_average_yield
             year_sustainable_yield = self.subsession.this_year_sustainable_yield
 
-            #numPlayers = self.subsession.get_players().length
+
+            # gamification design
 
             #if self.participant.payoff > self.player.next_upgrade_fish_count \
             #        and self.player.game_level <= 10:
@@ -53,8 +67,14 @@ class StudentCatch(Page):
             "player_name": self.participant.vars['name'],
 
             # choice back variables
-            "last_year_average_student_caught": self.group.this_year_average_yield,
-            "total_average_student_caught": self.group.total_average_yield,
+            "last_year_average_student_caught": self.subsession.this_year_average_yield,
+            "total_average_student_caught": self.subsession.total_average_yield,
+
+            # debug info
+            "numPlayer": self.subsession.numPlayers,
+            "numPlayer2": len(self.subsession.get_players()),
+            'this_year_harvest': self.subsession.this_year_harvest,
+            'total_harvest': self.subsession.total_harvest,
 
             # Graph Variables
             "each_year_fish_history": utils.catch_fish_history(self.subsession),
