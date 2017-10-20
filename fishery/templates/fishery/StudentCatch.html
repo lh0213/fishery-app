@@ -29,7 +29,7 @@
 
 .subinfo {
     text-align: center;
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 900;
     color: red;
 }
@@ -310,8 +310,8 @@ th, td {
         </div>
 
         <p class="boldtext">How many fish do you want to <mark>catch</mark> this year?</p>
-        <p class="subinfo"> Yield per person last year : {{ last_year_average_student_caught }}</p>
-        <p class="subinfo"> Yield per person in total : {{ total_average_student_caught }}</p>
+        <p class="subinfo"> · Yield per person last year : {{ last_year_average_student_caught }}</p>
+        <p class="subinfo"> · Yield per person in total : {{ total_average_student_caught }}</p>
             <!-- <p class="normaltext">No. of fish required to upgrade: {{ upgrade_distance }} </p>-->
 
         <div class="choice-buttons">
@@ -352,13 +352,39 @@ th, td {
         </br>
          <table class="normaltext" width="90%" align="center">
                <tr>
-                   <th>Intrinsic growth rate(r)
+                   <th>
+                       <p width="80%" align="center">
+                           Intrinsic growth rate
+                       </p>
+                       <p width="80%" align="center">
+                           (r)
+                       </p>
+
                    </th>
-                   <th>Strength of density regulation(a)
+                   <th>
+                       <p width="80%" align="center">
+                            Strength of density regulation
+                       </p>
+                       <p width="80%" align="center">
+                            (a)
+                       </p>
                    </th>
-                   <th>Sustainable yield(Hmax)
+                   <th>
+                       <p width="80%" align="center">
+                            Sustainable yield
+                       </p>
+                       <p width="80%" align="center">
+                            (H<sub>max</sub>)
+                       </p>
                    </th>
-                   <th>Total number of fish
+                   <th>
+                       <p width="80%" align="center">
+                            Total number of fish
+                       </p>
+
+                       <p width="80%" align="center">
+                            (<><)
+                       </p>
                    </th>
                </tr>
                <tr class="highlight">
@@ -370,8 +396,8 @@ th, td {
            </table>
            <br/>
          <p class="normaltext">
-             Total number of fish you've caught:
-             <mark style="font-size:15px">{{ player.participant.payoff }}</mark>
+             Total number of fish you've caught :
+             <mark style="font-size:17px"> {{ player.participant.payoff }}</mark>
          </p>
     </div>
 
