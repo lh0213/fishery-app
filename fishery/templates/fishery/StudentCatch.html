@@ -27,6 +27,13 @@
     font-weight: 900;
 }
 
+.subinfo {
+    text-align: center;
+    font-size: 13px;
+    font-weight: 900;
+    color: red;
+}
+
 
 .choiceback{
     width: 35%;
@@ -301,8 +308,10 @@ th, td {
             {% formfield player.num_fish_caught_this_year%}
             {% next_button %}
         </div>
-        </br>
-             <p class="boldtext">How many fish do you want to <mark>catch</mark>?</p>
+
+        <p class="boldtext">How many fish do you want to <mark>catch</mark> this year?</p>
+        <p class="subinfo"> Yield per person last year : {{ last_year_average_student_caught }}</p>
+        <p class="subinfo"> Yield per person in total : {{ total_average_student_caught }}</p>
             <!-- <p class="normaltext">No. of fish required to upgrade: {{ upgrade_distance }} </p>-->
         </br>
         <div class="choice-buttons">

@@ -52,6 +52,10 @@ class StudentCatch(Page):
             "year_number": utils.display_year(self),
             "player_name": self.participant.vars['name'],
 
+            # choice back variables
+            "last_year_average_student_caught": self.group.this_year_average_yield,
+            "total_average_student_caught": self.total_average_yield,
+
             # Graph Variables
             "each_year_fish_history": utils.catch_fish_history(self.subsession),
             "each_year_yield_history": utils.catch_yield_history(self.subsession),

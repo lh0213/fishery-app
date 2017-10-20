@@ -42,6 +42,18 @@ class Subsession(BaseSubsession):
 
 
 class Group(BaseGroup):
+    this_year_harvest = models.IntegerField()
+    total_harvest = models.IntegerField()
+    numPlayers = models.IntegerField()
+    this_year_average_yield = models.FloatField()
+    total_average_yield = models.FloatField()
+
+    numPlayers = 0
+    this_year_harvest = 0
+    total_harvest = 0
+    this_year_average_yield = 0
+    total_average_yield = 0
+
     def set_payoffs(self):
         # Need to decide whether to end game here if there are no more fish
         # Returns boolean: whether to continue the game
@@ -50,26 +62,33 @@ class Group(BaseGroup):
         # n_t: number of fsh at start of year
         # (r)ate: r, intrinsic growth rate
         # a: strength of density regulation
-        harvest = 0
         n_t = self.subsession.num_fish_at_start_of_year
         rate = self.session.config['intrinsic_growth_rate']
         a = self.session.config['strength_of_density_regulation']
 
-        for p in self.get_players():
-            harvest += p.num_fish_caught_this_year
+        self.this_year_harvest = 0
+        self.numPlayers = len(self.get_players())
 
-        # Applying the formula here
-        num_fish_for_next_year = ((1 + rate) * n_t) / (1 + a * n_t) - harvest
-        year_yield = harvest
+        for p in self.get_players():
+            self.this_year_harvest += p.num_fish_caught_this_year
+
+        # Updates harvest values
+        self.total_harvest += self.this_year_harvest
+        self.this_year_average_yield = self.this_year_harvest / self.numPlayers,
+        self.total_average_yield = self.total_harvest / (self.numPlayers * self.subsession.round_number)
+
+        # Applys the formula here
+        num_fish_for_next_year = ((1 + rate) * n_t) / (1 + a * n_t) - self.this_year_harvest
+        year_yield = self.this_year_harvest
         year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
 
         if num_fish_for_next_year > 0:
-            # Store the result and pass to the next round later
+            # Stores the result and pass to the next round later
             self.subsession.num_fish_at_start_of_year = num_fish_for_next_year
             self.subsession.this_year_yield = year_yield
             self.subsession.this_year_sustainable_yield = year_sustainable_yield
 
-        # Store the result and pass to the next round later
+        # Stores the result and pass to the next round later
         self.subsession.num_fish_at_start_of_year = num_fish_for_next_year
 
         if num_fish_for_next_year > 0:
