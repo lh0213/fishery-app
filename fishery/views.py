@@ -3,36 +3,6 @@ from . import utils
 from ._builtin import Page, WaitPage
 import math
 
-class TeacherStartPage(Page):
-    # def is_displayed(self):
-    # display when player.role = "teacher"
-    form_model = models.Constants
-    form_fields = ['para_intrinsic_growth_rate','para_strength_of_density_regulation',
-                   'para_total_num_of_fish']
-
-
-class TeacherEachYearResult(Page):
-    # def is_displayed(self):
-    # when to display?
-    def vars_for_template(self):
-        return {
-            'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-        }
-# displaying the same chart in the admin report and participant pages
-
-
-class TeacherFinalResult(Page):
-    # def is_displayed(self):
-    # when to display?
-
-    # displays the same chart in the admin report and participant pages
-    def vars_for_template(self):
-        vars_dict = {
-            'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-        }
-        vars_dict.update(self.subsession.vars_for_admin_report())
-        return vars_dict
-
 
 class StudentCatch(Page):
     form_model = models.Player
