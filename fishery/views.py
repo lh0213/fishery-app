@@ -1,37 +1,8 @@
+from fishery.models import Constants
 from . import models
 from . import utils
 from ._builtin import Page, WaitPage
 import math
-
-class TeacherStartPage(Page):
-    # def is_displayed(self):
-    # display when player.role = "teacher"
-    form_model = models.Constants
-    form_fields = ['para_intrinsic_growth_rate','para_strength_of_density_regulation',
-                   'para_total_num_of_fish']
-
-
-class TeacherEachYearResult(Page):
-    # def is_displayed(self):
-    # when to display?
-    def vars_for_template(self):
-        return {
-            'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-        }
-# displaying the same chart in the admin report and participant pages
-
-
-class TeacherFinalResult(Page):
-    # def is_displayed(self):
-    # when to display?
-
-    # displays the same chart in the admin report and participant pages
-    def vars_for_template(self):
-        vars_dict = {
-            'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
-        }
-        vars_dict.update(self.subsession.vars_for_admin_report())
-        return vars_dict
 
 
 class StudentCatch(Page):
@@ -49,9 +20,11 @@ class StudentCatch(Page):
             n_t = self.session.config['starting_fish_count']
             a = self.session.config['strength_of_density_regulation']
             year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
+
+            #game
             url_pic = "global/1.jpg"
-            self.participant.game_level = 1
-            self.participant.next_upgrade_fish_count = 2
+            self.player.game_level = 1
+            self.player.next_upgrade_fish_count = 2
 
         if self.round_number > 1:
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
@@ -63,9 +36,20 @@ class StudentCatch(Page):
             self.subsession.this_year_yield = self.subsession.in_round(self.round_number - 1) \
                 .this_year_yield
 
+            self.subsession.this_year_harvest = self.subsession.in_round(self.round_number - 1) \
+                .this_year_harvest
+            self.subsession.total_harvest = self.subsession.in_round(self.round_number - 1) \
+                .total_harvest
+            self.subsession.numPlayers = self.subsession.in_round(self.round_number - 1) \
+                .numPlayers
+            self.subsession.this_year_average_yield = self.subsession.in_round(self.round_number - 1) \
+                .this_year_average_yield
+            self.subsession.total_average_yield = self.subsession.in_round(self.round_number - 1) \
+                .total_average_yield
             year_sustainable_yield = self.subsession.this_year_sustainable_yield
 
-            #numPlayers = self.subsession.get_players().length
+
+            # gamification design
 
             #if self.participant.payoff > self.player.next_upgrade_fish_count \
             #        and self.player.game_level <= 10:
@@ -81,6 +65,16 @@ class StudentCatch(Page):
         return {
             "year_number": utils.display_year(self),
             "player_name": self.participant.vars['name'],
+
+            # choice back variables
+            "last_year_average_student_caught": math.ceil(self.subsession.this_year_average_yield*100)/100,
+            "total_average_student_caught": math.ceil(self.subsession.total_average_yield*100)/100,
+
+            # debug info
+            "numPlayer": self.subsession.numPlayers,
+            "numPlayer2": len(self.subsession.get_players()),
+            'this_year_harvest': self.subsession.this_year_harvest,
+            'total_harvest': self.subsession.total_harvest,
 
             # Graph Variables
             "each_year_fish_history": utils.catch_fish_history(self.subsession),

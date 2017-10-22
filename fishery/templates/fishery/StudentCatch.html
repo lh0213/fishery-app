@@ -27,11 +27,18 @@
     font-weight: 900;
 }
 
+.subinfo {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 900;
+    color: red;
+}
+
 
 .choiceback{
     width: 35%;
     float: left;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Calibri", Serif;
     height: 230px;
     margin-top: 20px;
     border-style:solid;
@@ -57,7 +64,7 @@
 
 .gameback{
     width: 63%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Calibri", Serif;
     height: 230px;
     float: left;
     margin-top: 20px;
@@ -70,7 +77,7 @@
 
 .infoback{
     width: 100%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Calibri", Serif;
     /*height: 300px;*/
     margin-top: 280px;
     border-style:solid;
@@ -81,7 +88,7 @@
 
 .fishback{
     width: 100%;
-    font-family: "Comic Sans MS", cursive, sans-serif;
+    font-family: "Calibri", Serif;
     /*height: 300px;*/
     margin-top: 20px;
     border-style:solid;
@@ -115,24 +122,20 @@ th, td {
 @media (max-width:650px) {
     .title {
         font-size: 20px;
-        font-family: Calibri;
         font-weight: 800;
     }
     .normaltext {
         font-size: 10px;
-        font-family: Calibri;
     }
 
     .choiceback {
         width: 100%;
         height: 220px;
-        font-family: Calibri;
     }
 
     .gameback {
         margin-top: 5px;
         width: 100%;
-        font-family: Calibri;
     }
 
     .blank {
@@ -141,7 +144,6 @@ th, td {
 
 
     .infoback {
-        font-family: Calibri;
         font-size: 10px;
         margin-top: 520px;
         width: 100%;
@@ -149,7 +151,6 @@ th, td {
     }
 
     .fishback {
-        font-family: Calibri;
         font-size: 10px;
         margin-top: 30px;
         width: 100%;
@@ -174,6 +175,7 @@ th, td {
     <script>
         var  game_level = {{ game_level }}
         switch(game_level) {
+            case 0:
             case 1:
                 $('#img_1').removeClass('hide');
                 break;
@@ -307,10 +309,12 @@ th, td {
             {% formfield player.num_fish_caught_this_year%}
             {% next_button %}
         </div>
-        </br>
-             <p class="boldtext">How many fish do you want to <mark>catch</mark>?</p>
+
+        <p class="boldtext">How many fish do you want to <mark>catch</mark> this year?</p>
+        <p class="subinfo"> · Yield per person last year : {{ last_year_average_student_caught }}</p>
+        <p class="subinfo"> · Yield per person in total : {{ total_average_student_caught }}</p>
             <!-- <p class="normaltext">No. of fish required to upgrade: {{ upgrade_distance }} </p>-->
-        </br>
+
         <div class="choice-buttons">
             <table class="table1" width="100%">
                 <tr width="100%">
@@ -349,13 +353,39 @@ th, td {
         </br>
          <table class="normaltext" width="90%" align="center">
                <tr>
-                   <th>Intrinsic growth rate(r)
+                   <th>
+                       <p width="80%" align="center">
+                           Intrinsic growth rate
+                       </p>
+                       <p width="80%" align="center">
+                           (r)
+                       </p>
+
                    </th>
-                   <th>Strength of density regulation(a)
+                   <th>
+                       <p width="80%" align="center">
+                            Strength of density regulation
+                       </p>
+                       <p width="80%" align="center">
+                            (a)
+                       </p>
                    </th>
-                   <th>Sustainable yield(Hmax)
+                   <th>
+                       <p width="80%" align="center">
+                            Sustainable yield
+                       </p>
+                       <p width="80%" align="center">
+                            (H<sub>max</sub>)
+                       </p>
                    </th>
-                   <th>Total number of fish
+                   <th>
+                       <p width="80%" align="center">
+                            Total number of fish
+                       </p>
+
+                       <p width="80%" align="center">
+                            (<><)
+                       </p>
                    </th>
                </tr>
                <tr class="highlight">
@@ -367,8 +397,8 @@ th, td {
            </table>
            <br/>
          <p class="normaltext">
-             Total number of fish you've caught:
-             <mark style="font-size:15px">{{ player.participant.payoff }}</mark>
+             Total number of fish you've caught :
+             <mark style="font-size:17px"> {{ player.participant.payoff }}</mark>
          </p>
     </div>
 
