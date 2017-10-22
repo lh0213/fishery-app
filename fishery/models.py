@@ -37,9 +37,19 @@ class Subsession(BaseSubsession):
     this_year_average_yield = models.FloatField(initial=0)
     total_average_yield = models.FloatField(initial=0)
 
+    #critical value attribute
+    rate = models.FloatField()
+    a = models.FloatField()
+    sustainable_yield_critical_value = models.FloatField()
+
     def creating_session(self):
         self.num_fish_at_start_of_year = self.session.config['starting_fish_count']
         self.session.vars['continue_game'] = True # For ending the game early when there are no more fish
+        self.rate = self.session.config['intrinsic_growth_rate']
+        self.a = self.session.config['strength_of_density_regulation']
+        self.sustainable_yield_critical_value = \
+            (-self.a + math.sqrt(pow(self.a, 2) + pow(self.a, 2) * self.rate))/math.pow(self.a, 2)
+
 
     # add this method to automatically generate the graph result of the game
     def vars_for_admin_report(self):
@@ -68,6 +78,7 @@ class Group(BaseGroup):
         numP = self.subsession.numPlayers
         ave_year = self.subsession.this_year_average_yield
         ave_total = self.subsession.total_average_yield
+        critical = self.subsession.sustainable_yield_critical_value
 
         # initializes values
         harvest = 0
@@ -84,7 +95,11 @@ class Group(BaseGroup):
         # Applys the formula here
         num_fish_for_next_year = ((1 + rate) * n_t) / (1 + a * n_t) - harvest
         year_yield = harvest
-        year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
+
+        if num_fish_for_next_year >= critical:
+            year_sustainable_yield = ((1 + rate) * critical) / (1 + a * critical) - critical
+        else:
+            year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
 
         if num_fish_for_next_year > 0:
             # Stores the result and pass to the next round later
