@@ -81,6 +81,9 @@ class StudentCatch(Page):
             "each_year_yield_history": utils.catch_yield_history(self.subsession),
             "each_year_sustainable_yield_history": utils.catch_sustainable_yield_history(self.subsession),
 
+            # debug info
+            "critical_value": self.subsession.sustainable_yield_critical_value,
+
             # Table Variables
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
             "sustainable_yield": math.ceil(year_sustainable_yield * 1000)/1000,
