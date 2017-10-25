@@ -12,7 +12,8 @@ class StudentCatch(Page):
 
     # Replace numbers with rewards for each level
     rewards_list = ["level 0", "level 1",
-         "a house", "a sailboat", "a puppy", "5", "6", "7", "8", "9", "10", "11", "12", "13",
+         "a house", "a sailboat", "a puppy", "a cat", "a garden", "pet seahorse",
+         "seabirds", "some more animals", "a pet dolphin", "11", "12", "13",
          "14", "15", "16", "17", "18", "19", "20"
     ]
 
