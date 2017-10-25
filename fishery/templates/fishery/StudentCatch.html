@@ -173,6 +173,11 @@ th, td {
     <script src="{% static "highcharts/highcharts.js" %}"></script>
     <script src="{% static "highcharts/modules/exporting.js" %}"></script>
     <script>
+        var is_upgrade = ("{{ is_upgrade }}" == "True")
+        if (is_upgrade) {
+            $('#upgrade-alert').removeClass('hide');
+        }
+
         var  game_level = {{ game_level }}
         switch(game_level) {
             case 0:
@@ -210,8 +215,6 @@ th, td {
                 $('#img_10').removeClass('hide');
         }
 
-    </script>
-    <script>
     var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
         Highcharts.chart('graph', {
@@ -301,7 +304,7 @@ th, td {
     <p class="title">
         Welcome, {{ player_name }}!
     </p>
-    <div class="alert alert-success" role="alert">
+    <div id="upgrade-alert" class="hide alert alert-success" role="alert">
         <p class="boldtext">
             Congratulations! 👍You reached level {{ game_level }}
             and bought {{ level_reward }}! 🤗
