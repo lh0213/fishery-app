@@ -130,9 +130,6 @@ class Player(BasePlayer):
     # Name may be duplicated, use student id as the key
     user_name = models.CharField()
     student_id = models.CharField()
-    game_level = models.IntegerField(initial=1)
-    next_upgrade_fish_count = models.IntegerField(initial=2)
-    is_upgrade = models.BooleanField(initial=False)
 
     # It will be included in a “documentation” file
     # that is available on the “Data Export” page.
@@ -157,9 +154,3 @@ class Player(BasePlayer):
                 self.next_upgrade_fish_count += math.ceil(self.subsession.num_fish_at_start_of_year / numPlayers)
                 self.next_upgrade_fish_count += 1
             self.is_upgrade = True
-
-
-
-
-
-

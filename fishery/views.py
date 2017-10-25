@@ -2,19 +2,22 @@ from fishery.models import Constants
 from . import models
 from . import utils
 from ._builtin import Page, WaitPage
-import math
+import math, random
 
 
 class StudentCatch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
-
-    timeout_seconds = 30
+    #timeout_seconds = 30
 
     def is_displayed(self):
         return self.session.vars['continue_game']
 
     def vars_for_template(self):
+        is_upgrade = False
+        last_year_catch = 0
+        cutoff = 0
+        rad = 0
         if self.round_number <= 1:
             rate = self.session.config['intrinsic_growth_rate']
             n_t = self.session.config['starting_fish_count']
@@ -23,8 +26,8 @@ class StudentCatch(Page):
 
             #game
             url_pic = "global/1.jpg"
-            self.player.game_level = 1
-            self.player.next_upgrade_fish_count = 2
+            self.participant.vars['game_level'] = 1
+            self.participant.vars['next_upgrade_fish_count'] = 0
 
         if self.round_number > 1:
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
@@ -49,18 +52,25 @@ class StudentCatch(Page):
             year_sustainable_yield = self.subsession.this_year_sustainable_yield
 
 
-            # gamification design
+            # Gamification design
 
-            #if self.participant.payoff > self.player.next_upgrade_fish_count \
-            #        and self.player.game_level <= 10:
-              #  self.player.game_level += 1
-              #  self.player.next_upgrade_fish_count += 2
-            self.player.game_level = int(math.ceil(int(self.participant.payoff) / 5));
-                #while self.player.next_upgrade_fish_count < self.participant.payoff:
-                    #self.player.next_upgrade_fish_count += math.ceil(self.subsession.num_fish_at_start_of_year / numPlayers)
-                    #self.player.next_upgrade_fish_count += 1
+            # Default upgrade interval is 5
+            # As level gets higher, there is a lower chance that the upgrade will actually
+            # take place
+            last_year_catch = self.player.in_round(self.round_number - 1).payoff
+            self.participant.vars['next_upgrade_fish_count'] += last_year_catch
 
-
+            # Rename for readability; imagine exp to be experience point needed
+            # to upgrade
+            exp = self.participant.vars['next_upgrade_fish_count']
+            if (exp > 5):
+                n = self.participant.vars['game_level']
+                cutoff = math.log(n + 15, 16) * (n ** (-3/4)) * math.log(exp, 5)
+                rad = random.random()
+                if (rad <= cutoff):
+                    is_upgrade = True
+                    self.participant.vars['game_level'] += 1
+                    self.participant.vars['next_upgrade_fish_count'] = 0
 
         return {
             "year_number": utils.display_year(self),
@@ -75,6 +85,9 @@ class StudentCatch(Page):
             "numPlayer2": len(self.subsession.get_players()),
             'this_year_harvest': self.subsession.this_year_harvest,
             'total_harvest': self.subsession.total_harvest,
+            'exp': self.participant.vars['next_upgrade_fish_count'],
+            'cutoff': cutoff,
+            'rad': rad,
 
             # Graph Variables
             "each_year_fish_history": utils.catch_fish_history(self.subsession),
@@ -88,9 +101,10 @@ class StudentCatch(Page):
             'num_fish_left_in_fishery': self.subsession.num_fish_at_start_of_year,
             "sustainable_yield": math.ceil(year_sustainable_yield * 1000)/1000,
 
-            # Game Picture Path
+            # Gamificatioin
             #'upgrade_distance':int(math.ceil(int(self.participant.payoff) / 10)) - self.participant.payoff,
-            'game_level': self.player.game_level,
+            'game_level': self.participant.vars['game_level'],
+            'is_upgrade' : is_upgrade,
 
             # Table Constants
             "intrinsic_growth_rate": self.session.config['intrinsic_growth_rate'],
