@@ -10,6 +10,12 @@ class StudentCatch(Page):
     form_fields = ['num_fish_caught_this_year']
     #timeout_seconds = 30
 
+    # Replace numbers with rewards for each level
+    rewards_list = ["level 0", "level 1",
+         "a house", "a sailboat", "a puppy", "5", "6", "7", "8", "9", "10", "11", "12", "13",
+         "14", "15", "16", "17", "18", "19", "20"
+    ]
+
     def is_displayed(self):
         return self.session.vars['continue_game']
 
@@ -72,6 +78,8 @@ class StudentCatch(Page):
                     self.participant.vars['game_level'] += 1
                     self.participant.vars['next_upgrade_fish_count'] = 0
 
+        game_level = self.participant.vars['game_level']
+
         return {
             "year_number": utils.display_year(self),
             "player_name": self.participant.vars['name'],
@@ -103,7 +111,8 @@ class StudentCatch(Page):
 
             # Gamificatioin
             #'upgrade_distance':int(math.ceil(int(self.participant.payoff) / 10)) - self.participant.payoff,
-            'game_level': self.participant.vars['game_level'],
+            'game_level': game_level,
+            'level_reward': self.rewards_list[game_level] if (game_level <= 20) else "a surpise",
             'is_upgrade' : is_upgrade,
 
             # Table Constants
