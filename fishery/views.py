@@ -12,9 +12,27 @@ class StudentCatch(Page):
 
     # Replace numbers with rewards for each level
     rewards_list = ["level 0", "level 1",
-         "a house", "a sailboat", "a puppy", "a cat", "a garden", "pet seahorse",
-         "seabirds", "some more animals", "a pet dolphin", "11", "12", "13",
-         "14", "15", "16", "17", "18", "19", "20"
+         "You bought and planted a palm tree",
+         "You bought a house",
+         "The weather is great",
+         "You bought some flowers",
+         "You planted a flower farm",
+         "You built a fence for your farm",
+         "You made a scarecrow",
+         "You bought a mailbox",
+         "You built a chicken coop",
+         "You bought a cat",
+         "You bought a puppy",
+         "You discovered some rare rocks",
+         "You discovered some sea creatures",
+         "You bought a llama",
+         "You trained some seabirds",
+         "You caught a clown fish",
+         "You bought a sailboat",
+         "You befriended some pet seafish",
+         "You befriended a dolphin",
+         "A rainbow appeared. You dug at the other end of the rainbow and discovered" +
+         "a treasure box. You are now a millionaire"
     ]
 
     def is_displayed(self):

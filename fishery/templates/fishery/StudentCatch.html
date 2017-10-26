@@ -180,47 +180,9 @@ th, td {
 
         var game_level = {{ game_level }};
         // Treat level 0 and 1 as the same
-        game_level = (game_level == 0) ? 2 : game_level + 1;
-        // There's an off-by-1 error in the file name; too lazy to change it
+        game_level = (game_level == 0) ? 1 : game_level;
         var img_target_id = "#img_" + game_level;
         $(img_target_id).removeClass('hide');
-        /*
-        switch(game_level) {
-            case 0:
-            case 1:
-                $('#img_1').removeClass('hide');
-                break;
-            case 2:
-                $('#img_2').removeClass('hide');
-                break;
-            case 3:
-                $('#img_3').removeClass('hide');
-                break;
-            case 4:
-                $('#img_4').removeClass('hide');
-                break;
-            case 5:
-                $('#img_5').removeClass('hide');
-                break;
-            case 6:
-                $('#img_6').removeClass('hide');
-                break;
-            case 7:
-                $('#img_7').removeClass('hide');
-                break;
-            case 8:
-                $('#img_8').removeClass('hide');
-                break;
-            case 9:
-                $('#img_9').removeClass('hide');
-                break;
-            case 10:
-                $('#img_10').removeClass('hide');
-                break;
-            default:
-                $('#img_10').removeClass('hide');
-        }
-        */
 
     var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
@@ -313,8 +275,8 @@ th, td {
     </p>
     <div id="upgrade-alert" class="hide alert alert-success" role="alert">
         <p class="boldtext">
-            Congratulations! 👍You reached level {{ game_level }}
-            and bought {{ level_reward }}! 🤗
+            Congratulations! 👍 You reached level {{ game_level }}!
+            {{ level_reward }}! 🤗
         </p>
     </div>
     <div class="choiceback">
