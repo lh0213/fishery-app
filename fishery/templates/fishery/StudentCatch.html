@@ -178,7 +178,13 @@ th, td {
             $('#upgrade-alert').removeClass('hide');
         }
 
-        var  game_level = {{ game_level }}
+        var game_level = {{ game_level }};
+        // Treat level 0 and 1 as the same
+        game_level = (game_level == 0) ? 2 : game_level + 1;
+        // There's an off-by-1 error in the file name; too lazy to change it
+        var img_target_id = "#img_" + game_level;
+        $(img_target_id).removeClass('hide');
+        /*
         switch(game_level) {
             case 0:
             case 1:
@@ -214,6 +220,7 @@ th, td {
             default:
                 $('#img_10').removeClass('hide');
         }
+        */
 
     var data = {{ each_year_fish_history|json }}
     if (data.length > -1) {
@@ -344,16 +351,28 @@ th, td {
 
     <div class="gameback">
         <p>
-            <img class="hide" id="img_1" src="{% static "global/1.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_2" src="{% static "global/2.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_3" src="{% static "global/3.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_4" src="{% static "global/4.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_5" src="{% static "global/5.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_6" src="{% static "global/6.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_7" src="{% static "global/7.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_8" src="{% static "global/8.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_9" src="{% static "global/9.jpg" %}" width=100% height=220px>
-            <img class="hide" id="img_10" src="{% static "global/10.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_1" src="{% static "global/level-1.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_2" src="{% static "global/level-2.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_3" src="{% static "global/level-3.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_4" src="{% static "global/level-4.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_5" src="{% static "global/level-5.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_6" src="{% static "global/level-6.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_7" src="{% static "global/level-7.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_8" src="{% static "global/level-8.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_9" src="{% static "global/level-9.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_10" src="{% static "global/level-10.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_11" src="{% static "global/level-11.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_12" src="{% static "global/level-12.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_13" src="{% static "global/level-13.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_14" src="{% static "global/level-14.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_15" src="{% static "global/level-15.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_16" src="{% static "global/level-16.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_17" src="{% static "global/level-17.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_18" src="{% static "global/level-18.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_19" src="{% static "global/level-19.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_20" src="{% static "global/level-20.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_21" src="{% static "global/level-21.jpg" %}" width=100% height=220px>
+            <img class="hide" id="img_22" src="{% static "global/level-22.jpg" %}" width=100% height=220px>
         </p>
     </div>
 
