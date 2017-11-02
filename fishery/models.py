@@ -146,11 +146,3 @@ class Player(BasePlayer):
 
         self.is_upgrade = False
         numPlayers = self.subsession.get_players().length
-
-        if self.participant.payoff > self.next_upgrade_fish_count and self.game_level <= 10:
-            self.game_level = self.game_level + 1
-
-            while self.next_upgrade_fish_count < self.payoff:
-                self.next_upgrade_fish_count += math.ceil(self.subsession.num_fish_at_start_of_year / numPlayers)
-                self.next_upgrade_fish_count += 1
-            self.is_upgrade = True
