@@ -12,27 +12,28 @@ class StudentCatch(Page):
 
     # Replace numbers with rewards for each level
     rewards_list = ["level 0", "level 1",
-         "You bought and planted a palm tree",
-         "You bought a house",
-         "The weather is great",
-         "You bought some flowers",
-         "You planted a flower farm",
-         "You built a fence for your farm",
-         "You made a scarecrow",
-         "You bought a mailbox",
-         "You built a chicken coop",
-         "You bought a cat",
-         "You bought a puppy",
-         "You discovered some rare rocks",
-         "You discovered some sea creatures",
-         "You bought a llama",
-         "You trained some seabirds",
-         "You caught a clown fish",
-         "You bought a sailboat",
-         "You befriended some pet seafish",
-         "You befriended a dolphin",
+         "You bought and planted a palm tree",  #level 2
+         "You bought a house",                  #level 3
+         "The weather is great",                #level 4
+         "You bought some flowers",             #level 5
+         "You planted a flower farm",           #level 6
+         "You built a fence for your farm",     #level 7
+         "You made a scarecrow",                #level 8
+         "You bought a mailbox",                #level 9
+         "You built a chicken coop",            #level 10
+         "You bought a cat",                    #level 11
+         "You bought a puppy",                  #level 12
+         "You discovered some rare rocks",      #level 13
+         "You discovered some sea creatures",   #level 14
+         "You bought some sea stars and sea shells",                  #level 15
+         "You bought a llama",                  #level 16
+         "You trained some seabirds",           #level 17
+         "You caught a clown fish",             #level 18
+         "You bought a sailboat",               #level 19
+         "You befriended some pet seafish",     #level 20
+         "You befriended a dolphin",            #level 21
          "A rainbow appeared. You dug at the other end of the rainbow and discovered" +
-         "a treasure box. You are now a millionaire"
+         "a treasure box. You are now a millionaire" #level 22
     ]
 
     def is_displayed(self):
