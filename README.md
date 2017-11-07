@@ -5,13 +5,11 @@ Heroku demo: https://fishery-app.herokuapp.com
 
 ---
 
-ifdef::env-github[]
 image::images/instruction.png[width="600"]
 image::images/level1.png[width="600"]
 image::images/login.png[width="600"]
 image::images/result.png[width="600"]
 image::images/topLevel.png[width="600"]
-endif::[]
 
 
 ### oTree Docs
