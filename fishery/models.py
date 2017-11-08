@@ -93,7 +93,7 @@ class Group(BaseGroup):
         ave_total = t_harvest / (numP * self.subsession.round_number)
 
         # Applys the formula here
-        num_fish_for_next_year = ((1 + rate) * n_t) / (1 + a * n_t) - harvest
+        num_fish_for_next_year = math.floor(((1 + rate) * n_t) / (1 + a * n_t) - harvest)
         year_yield = harvest
 
         if num_fish_for_next_year >= critical:
