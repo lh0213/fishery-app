@@ -1,4 +1,5 @@
 import math
+from . import utils
 from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency
@@ -123,6 +124,9 @@ class Group(BaseGroup):
 
             return True
         else:
+            self.session.vars['fish_history'] = utils.catch_fish_history(self.subsession)
+            self.session.vars['yield_history'] = utils.catch_yield_history(self.subsession)
+            self.session.vars['sustainable_yield_history'] = utils.catch_sustainable_yield_history(self.subsession)
             return False
 
 

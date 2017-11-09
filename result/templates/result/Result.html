@@ -19,6 +19,86 @@
     }
     </style>
 {% endblock %}
+{% block scripts %}
+    <!-- Highchart stuff -->
+    <script src="{% static "highcharts/highcharts.js" %}"></script>
+    <script src="{% static "highcharts/modules/exporting.js" %}"></script>
+    <script>
+
+    var data = {{ each_year_fish_history|json }}
+    if (data.length > -1) {
+        Highcharts.chart('graph', {
+            title: {
+                text: 'Fishery History'
+            },
+            chart: {
+                backgroundColor: 'floralwhite'
+            },
+            yAxis: {
+                title: {
+                    text: 'Number of fish'
+                }
+            },
+            xAxis: {
+                allowDecimals: false
+            },
+            legend: {
+                y: -40, // make room for subtitle
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+            plotOptions: {
+                series: {
+                // Remember to change hard-coded value!!!!!
+                pointStart: 2017,
+                }
+            },
+            series: [{
+                name: 'Fish count',
+                data: {{ each_year_fish_history|json }},
+                marker: {
+                    fillColor: '#FFFFFF',
+                    lineColor: null,
+                    lineWidth: 2
+                    }
+                }, {
+                    name: 'Yield',
+                    data: {{ each_year_yield_history|json }},
+                    marker: {
+                        fillColor: '#8E44AD',
+                        lineColor: '#8E44AD',
+                        lineWidth: 2
+                    }
+                }, {
+                    name: 'Sustainable Yield',
+                    data: {{ each_year_sustainable_yield_history|json }},
+                    marker: {
+                        //symbol: 'cross',
+                        fillColor: '#F5B041',
+                        lineColor: '#F5B041',
+                        lineWidth: 2
+                    }
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        layout: 'horizontal',
+                        align: 'center',
+                        verticalAlign: 'bottom'
+                    }
+                }
+            }]
+        }
+    });
+    }
+    </script>
+{% endblock %}
 
 {% block content %}
 <div>
@@ -33,11 +113,17 @@
         <div class="smsize">
             <p>
                 Your caught <mark>{{ participant.payoff }}</mark> in total.
-                <p></p>
             </p>
-
-            {% next_button %}
         </div>
+    </div>
+
+    <div class="fishback">
+        <p class="normaltext">
+            <div id="graph"></div>
+        </p>
+        <p>
+
+        </p>
     </div>
 
     <div class="bottom">
@@ -48,4 +134,3 @@
 
 </div>
 {% endblock %}
-
