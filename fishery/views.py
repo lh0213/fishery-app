@@ -177,5 +177,4 @@ class StudentFinalResult(Page):
 
 page_sequence = [StudentCatch,
                  ResultsWaitPage,
-                 # OutOfFishResult,
                  StudentFinalResult]
