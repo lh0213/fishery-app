@@ -6,6 +6,9 @@ from ._builtin import Bot
 from random import randint
 from .models import Constants
 
+# TODO: finish this part of player bots
+# This part of auto-testing player bots has not been finished yet.
+# It only supports manual testing now.
 
 class PlayerBot(Bot):
     cases = ['greedy', 'lazy', 'normal']
@@ -20,8 +23,10 @@ class PlayerBot(Bot):
                 'lazy': 0,
                 'normal': randint(0, 2),
                 }[self.case]
+
                 # timeout happened?
                 # yield (views.StudentCatch, {'num_fish_caught_this_year': fish}, timeout_happened)
+
             yield (views.StudentCatch, {'num_fish_caught_this_year': fish})
             if self.session.vars['continue_game']:
                 yield (views.StudentFinalResult)

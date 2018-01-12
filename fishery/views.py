@@ -8,9 +8,10 @@ import math, random
 class StudentCatch(Page):
     form_model = models.Player
     form_fields = ['num_fish_caught_this_year']
-    #timeout_seconds = 30
+    # timeout_seconds = 30        # if time limit is needed, then uncomment this line.
 
-    # Replace numbers with rewards for each level
+    # Game: Awards for Upgrading
+    # Replaces numbers with rewards for each level
     rewards_list = ["level 0", "level 1",
          "You bought and planted a palm tree",  #level 2
          "You bought a house",                  #level 3
@@ -44,18 +45,22 @@ class StudentCatch(Page):
         last_year_catch = 0
         cutoff = 0
         rad = 0
+
         if self.round_number <= 1:
+            # Initializes the parameters
             rate = self.session.config['intrinsic_growth_rate']
             n_t = self.session.config['starting_fish_count']
             a = self.session.config['strength_of_density_regulation']
             year_sustainable_yield = ((1 + rate) * n_t) / (1 + a * n_t) - n_t
 
-            #game
+            # Game level information
             url_pic = "global/1.jpg"
             self.participant.vars['game_level'] = 1
             self.participant.vars['next_upgrade_fish_count'] = 0
 
         if self.round_number > 1:
+            # Updates data for the upcoming year
+
             self.subsession.num_fish_at_start_of_year = self.subsession.in_round(self.round_number - 1) \
                 .num_fish_at_start_of_year
 
@@ -86,13 +91,13 @@ class StudentCatch(Page):
             last_year_catch = self.player.in_round(self.round_number - 1).payoff
             self.participant.vars['next_upgrade_fish_count'] += last_year_catch
 
-            # Rename for readability; imagine exp to be experience point needed
-            # to upgrade
-            exp = self.participant.vars['next_upgrade_fish_count']
+            exp = self.participant.vars['next_upgrade_fish_count'] # experience point needed to upgrade
+
             if (exp > 5):
                 n = self.participant.vars['game_level']
                 cutoff = math.log(n + 15, 16) * (n ** (-3/4)) * math.log(exp, 5)
                 rad = random.random()
+
                 if (rad <= cutoff):
                     is_upgrade = True
                     self.participant.vars['game_level'] += 1
@@ -130,7 +135,6 @@ class StudentCatch(Page):
             "sustainable_yield": math.ceil(year_sustainable_yield * 1000)/1000,
 
             # Gamificatioin
-            #'upgrade_distance':int(math.ceil(int(self.participant.payoff) / 10)) - self.participant.payoff,
             'game_level': game_level,
             'level_reward': self.rewards_list[game_level] if (game_level <= 20) else "a surpise",
             'is_upgrade' : is_upgrade,

@@ -6,9 +6,7 @@ from otree.api import (
 )
 
 author = 'Fan Yuting & Liu Hang'
-doc = """
-Fishery app, etc.
-"""
+doc = """Fishery app, etc."""
 
 
 class Constants(BaseConstants):
