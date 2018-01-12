@@ -117,8 +117,8 @@ th, td {
     text-align: center;
 }
 
-
-/*Use a media query to add a break point at 800px:*/
+/* Responsive Design */
+/* Uses a media query to add a break point at 800px:*/
 @media (max-width:650px) {
     .title {
         font-size: 20px;
@@ -169,6 +169,7 @@ th, td {
 
 
 {% block scripts %}
+
     <!-- Highchart stuff -->
     <script src="{% static "highcharts/highcharts.js" %}"></script>
     <script src="{% static "highcharts/modules/exporting.js" %}"></script>
