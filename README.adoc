@@ -1,7 +1,13 @@
 # Fishery App
 
-Fishery App for NUS LSM4255 (Methods in Mathematical Biology)
+__Fishery App for NUS LSM4255 (Methods in Mathematical Biology)__
+
+* This is a CAI web application for LSM4255 course in NUS
+* Allow students to participate in a fisheries management game
+* Demonstrate the concepts of resource use, co-operation, and the tragedy of the commons
+
 Heroku demo: https://fishery-app.herokuapp.com
+Professor's blog:https://ryanchisholm.wordpress.com/2017/11/11/students-develop-fishery-management-game-for-teaching-the-tragedy-of-the-commons/
 
 ---
 
@@ -15,8 +21,18 @@ image::images/result.png[width="600"]
 
 image::images/topLevel.png[width="600"]
 
+---
+
+== For Developers
+* This application is *written based on otree platform*, using Python as the programming language.
+* You should go to http://otree.readthedocs.org to have a general idea of otree platform.
+
+== Acknowledgements
+
+* This application were inspired by the excellent otree platform.
+
 
 ### oTree Docs
 
-http://otree.readthedocs.org
+
 
