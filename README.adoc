@@ -28,9 +28,10 @@ image::images/topLevel.png[width="600"]
 == For Developers
 * This application is *written based on otree platform*, using Python as the programming language.
 * You should go to http://otree.readthedocs.org to have a general idea of otree platform.
+* To get started, go to: fishery/templates, the main files to be edited are: models.py and views.py, to edit the content of the web pages, go to fishery/templates/fishery, two main html pages are StudentCatch.html and StudentFinalResult.html, using Django as the framework.
+* The server is using Heroku.
 
 == Acknowledgements
-
 * This application were inspired by the excellent otree platform.
 
 
